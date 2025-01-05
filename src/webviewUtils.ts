@@ -42,6 +42,30 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Kraken i18n</title>
       <link rel="stylesheet" type="text/css" href="${styleUri}">
+      <style>
+        .translate-ai-btn {
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+          border-radius: 4px;
+        }
+        .translate-ai-btn:hover {
+          background-color: #45a049;
+        }
+        .delete-key-btn {
+          background-color: #f44336;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+          border-radius: 4px;
+        }
+        .delete-key-btn:hover {
+          background-color: #e53935;
+        }
+      </style>
     </head>
     <body>
       <h1>Bem-vindo ao Kraken i18n</h1>
