@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>I18N Manager</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Brand-Dark-icons.css">
+</head>
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+
+        let API_KEY = localStorage.getItem('api-token') || "...";
+        let genAI = new GoogleGenerativeAI(API_KEY);
+        let model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+
+        function initializeGenAI(apiKey) {
+            genAI = new GoogleGenerativeAI(apiKey);
+            model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        }
+
+
+
+        async function fillWithAI(input, referenceContent, language) {
+            try {
+                const chatSession = model.startChat({
+                    generationConfig: {
+                        temperature: 1,
+                        topP: 0.95,
+                        topK: 64,
+                        maxOutputTokens: 8192,
+                        responseMimeType: "text/plain",
+                    },
+                    history: [],
+                });
+                const result = await chatSession.sendMessage(`Translate the following content into ${language}: '${referenceContent}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return only the translated string.`);
+                input.value = result.response.text();
+                updateTranslationPercentage(language);
+                checkEmptyFields();
+            } catch (error) {
+                console.error(`Erro ao preencher com IA: ${error.message}`);
+                throw error;
+            }
+        }
+
+        
+        async function fillWithAIList(referenceContents, language) {
+            try {
+                const chatSession = model.startChat({
+                    generationConfig: {
+                        temperature: 1,
+                        topP: 0.95,
+                        topK: 64,
+                        maxOutputTokens: 8192,
+                        responseMimeType: "text/plain",
+                    },
+                    history: [],
+                });
+
+                const prompt = `Translate the following contents into ${language}. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return the translated strings as a JSON array.\n\n${JSON.stringify(referenceContents)}`;
+                const result = await chatSession.sendMessage(prompt);
+                const translatedText = result.response.text();
+                const translations = JSON.parse(translatedText.replace(/```json|```/g, '').trim());
+                updateTranslationPercentage(language);
+                return translations;
+            } catch (error) {
+                console.log(`Erro ao preencher com IA: ${error.message}`);
+                return [];
+            }
+        }
+
+        async function translateRowEmptyFields(row, referenceContent) {
+            const inputs = row.querySelectorAll('input.verify_vazio');
+            const batch = [];
+            const batchInputs = [];
+
+            for (const input of inputs) {
+                if (!input.value) {
+                    const language = input.getAttribute('data-language');
+                    batch.push(referenceContent);
+                    batchInputs.push(input);
+                }
+            }
+
+            if (batch.length > 0) {
+                const translations = await fillWithAIList(batch, batchInputs[0].getAttribute('data-language'));
+                translations.forEach((translation, index) => {
+                    if (batchInputs[index]) {
+                        batchInputs[index].value = translation;
+                    }
+                });
+            }
+        }
+
+        window.fillWithAI = fillWithAI;
+        window.fillWithAIList = fillWithAIList;
+        window.initializeGenAI = initializeGenAI;
+        window.translateRowEmptyFields = translateRowEmptyFields;
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let savedReferenceLanguage = localStorage.getItem('reference-language');
+            if (savedReferenceLanguage) {
+                document.getElementById('reference-language').value = savedReferenceLanguage;
+                document.getElementById('reference-language-display').innerText = savedReferenceLanguage;
+                document.getElementById('reference-content').setAttribute('data-language', savedReferenceLanguage);
+            }
+        });
+
+        let apiToken = localStorage.getItem('api-token');
+        localStorage.clear();
+        if (apiToken) {
+            localStorage.setItem('api-token', apiToken);
+        }
+    </script>
+    <section class="position-relative py-4 py-xl-5" id="upload-section">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 col-xl-4 col-xxl-8">
+                    <div class="card mb-5">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <h2 class="text-primary">I18N Manager</h2>
+                            <p class="mx-3">Insira os arquivos .json das traduções que deseja editar.</p>
+                            <form class="text-center"><input id="idiomas_input" class="form-control d-flex" type="file"  accept=".json" multiple/></form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<div id="translations-section" class=" mt-5 p-2" style="display: none;">
+    <div class="d-flex align-items-center mb-3">
+        <input type="text" id="search-bar" class="form-control me-2" placeholder="Buscar por chave ou texto...">
+        <div class="buttons-container d-flex">
+            <button class="btn btn-primary me-2" id="add_key">Adicionar Nova Chave</button>
+            <button class="btn btn-secondary me-2" id="settings-button">Configurações</button>
+            <button class="btn btn-success me-2" id="save-translations">Exportar</button>
+            <button class="btn btn-warning me-2" id="translate-batch">Traduzir Lote</button> <!-- Novo botão -->
+        </div>
+    </div>
+    <div class="table-responsive table-container">
+        <table id="translations-table" class="table table-hover table-bordered">
+            <thead>
+
+            </thead>
+            <tbody id="translations-container"></tbody>
+        </table>
+    </div>
+</div>
+
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Tradução</h5>
+                    <button type="button" class="btn-close close-button" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="reference-content">Conteúdo de Referência: <strong>Idioma de Referência:</strong> <span id="reference-language-display"></span></label>
+                    <textarea id="reference-content" class="form-control" rows="4" readonly></textarea>
+                    <label for="edit-input" class="mt-3">Novo Conteúdo: <strong>Idioma Atual:</strong> <span id="current-language-display"></span></label>
+                    <textarea id="edit-input" class="form-control" rows="10"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="save-edit">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Configurações</h5>
+                    <button type="button" class="btn-close close-button" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="reference-language">Idioma de Referência para IA:</label>
+                    <select id="reference-language" class="form-select">
+                        <!-- Opções serão preenchidas dinamicamente -->
+                    </select>
+                    <label for="api-token" class="mt-3">API Token:</label>
+                    <input type="text" id="api-token" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="save-settings">Salvar Configurações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="js/fileHandler.js"></script>
+    <script src="js/tableHandler.js"></script>
+    <script src="js/checkEmptyFields.js"></script>
+    <script src="js/settingsHandler.js"></script>
+    <script src="js/saveTranslations.js"></script>
+    <script src="js/eventHandlers.js"></script>
+    <script src="js/modalHandler.js"></script>
+    <script>
+document.getElementById('translate-batch').addEventListener('click', async function() {
+    const rows = document.querySelectorAll('#translations-tbody tr');
+    let allFilled = false;
+
+    while (!allFilled) {
+        let translatedCount = 0;
+        let batch = {};
+        let batchInputs = {};
+
+        for (const row of rows) {
+            const inputs = row.querySelectorAll('input.verify_vazio');
+            for (const input of inputs) {
+                const referenceContent = row.querySelector(`input[data-language="${defaultLanguage}"]`).value;
+                if (referenceContent && !input.value) {
+                    const language = input.getAttribute('data-language');
+                    if (!batch[language]) {
+                        batch[language] = [];
+                        batchInputs[language] = [];
+                    }
+                    batch[language].push(referenceContent);
+                    batchInputs[language].push(input);
+
+                    if (batch[language].length === 30) {
+                        try {
+                            const translations = await fillWithAIList(batch[language], language);
+                            translations.forEach((translation, index) => {
+                                if (batchInputs[language][index]) {
+                                    batchInputs[language][index].value = translation;
+                                }
+                            });
+                            checkEmptyFields();
+                            updateTranslationPercentage(language);
+                        } catch (error) {
+                            console.error(`Erro ao preencher com IA: ${error.message}`);
+                            console.log('Esperando 60 segundos antes de tentar novamente...');
+                            await new Promise(resolve => setTimeout(resolve, 60000)); // Espera 60 segundos
+                        }
+                        translatedCount += batch[language].length;
+                        batch[language] = [];
+                        batchInputs[language] = [];
+                        await new Promise(resolve => setTimeout(resolve, 4000)); // Adiciona um atraso de 4.5 segundos entre os requests
+                    }
+                }
+            }
+        }
+
+        // Processa o restante do batch se houver menos de 25 itens
+        for (const language in batch) {
+            if (batch[language].length > 0) {
+                try {
+                    const translations = await fillWithAIList(batch[language], language);
+                    translations.forEach((translation, index) => {
+                        if (batchInputs[language][index]) {
+                            batchInputs[language][index].value = translation;
+                        }
+                    });
+                    checkEmptyFields();
+                    updateTranslationPercentage(language);
+                } catch (error) {
+                    console.error(`Erro ao preencher com IA: ${error.message}`);
+                    console.log('Esperando 60 segundos antes de tentar novamente...');
+                    await new Promise(resolve => setTimeout(resolve, 60000)); // Espera 60 segundos
+                }
+                translatedCount += batch[language].length;
+            }
+        }
+
+        allFilled = translatedCount === 0; // Se nenhum campo foi traduzido, todos estão preenchidos
+    }
+});
+    </script>
+</body>
+</html>

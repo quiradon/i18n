@@ -1,0 +1,663 @@
+{
+  "baralho": {
+    "tarot": {
+      "cards": {
+        "6": "Amor, escolha, compromisso, relacionamento 🔁 Falta de amor, separação, indecisão, conflito\n",
+        "7": "Viagem, progresso, conquista, controle 🔁 Falta de direção, falta de controle, imprudência, acidente\n",
+        "8": "",
+        "9": ""
+      },
+      "title": ""
+    },
+    "youhand": ""
+  },
+  "changelog": {
+    "error": ""
+  },
+  "checkin": {
+    "end": "",
+    "error": {
+      "amout": ""
+    },
+    "pause": "",
+    "start": "",
+    "unpause": ""
+  },
+  "clear": {
+    "msg": ""
+  },
+  "cmds": {
+    "task": {
+      "btn": "",
+      "modal": {
+        "input1": {
+          "label": "",
+          "placeholder": ""
+        },
+        "input2": {
+          "label": "",
+          "placeholder": ""
+        },
+        "title": ""
+      },
+      "place": "",
+      "sign": "",
+      "status": {
+        "0": {
+          "desc": "",
+          "label": ""
+        },
+        "1": {
+          "desc": "",
+          "label": ""
+        },
+        "2": {
+          "desc": "",
+          "label": ""
+        }
+      }
+    }
+  },
+  "coin_flip": {
+    "0": "",
+    "1": ""
+  },
+  "coins": {
+    "drop": {
+      "coin": "",
+      "label": ""
+    }
+  },
+  "common": {
+    "404": "",
+    "add_btn": "",
+    "back": "",
+    "buy": {
+      "btn": ""
+    },
+    "cancel": "",
+    "confirm": "",
+    "delete_btn": "",
+    "donate_btn": "",
+    "down_btn": "",
+    "embed_not_found": "",
+    "end": "",
+    "erro": {
+      "invalidmath": "",
+      "invalidskin": "",
+      "noperm": {
+        "edit": "",
+        "rename": ""
+      },
+      "require_embed": ""
+    },
+    "gender": {
+      "f": "",
+      "m": ""
+    },
+    "generate": "",
+    "hair": "",
+    "join_btn": "",
+    "message_not_found": "",
+    "new_sheet": "",
+    "next_btn": "",
+    "pause": "",
+    "preview": "",
+    "price": "",
+    "realyconfirm": "",
+    "rename": "",
+    "reroll_btn": "",
+    "save_btn": "",
+    "select": {
+      "btn": ""
+    },
+    "selected": {
+      "btn": ""
+    },
+    "set_champion": "",
+    "set_message_override": {
+      "false": "",
+      "no_perm": "",
+      "true": ""
+    },
+    "suport_btn": "",
+    "text": "",
+    "text_placeholder": "",
+    "unpause": "",
+    "vote_btn": "",
+    "wiki_search_fail": ""
+  },
+  "config": {
+    "button1": "",
+    "button2": "",
+    "buttonChatDice": {
+      "false": "",
+      "true": ""
+    },
+    "buttonPrivateSheet": {
+      "false": "",
+      "true": ""
+    },
+    "buttonReplaceMessages": {
+      "false": "",
+      "noPermission": "",
+      "true": ""
+    },
+    "desc": "",
+    "error": "",
+    "errorBotPermissionMissing": "",
+    "errorPermissionMissing": "",
+    "error_dm": "",
+    "field1": "",
+    "field2": "",
+    "title": ""
+  },
+  "cooldown": {
+    "comandos": ""
+  },
+  "cu": {
+    "name": "meu amigo de quatro tu é deus!"
+  },
+  "daily": {
+    "btn": "",
+    "desc": "",
+    "edited": "",
+    "footer": "",
+    "sucess": {
+      "title": ""
+    },
+    "title": "",
+    "try_later": ""
+  },
+  "dawdawdwad": "wdawd",
+  "dice": {
+    "dicename": "",
+    "errorAmountFaces": "",
+    "errorBuyed": "",
+    "errorNoPermissionToReroll": "",
+    "errorUndefinedEmbedReroll": "",
+    "errorUndefinedEmbedURLReroll": "",
+    "invalid": "",
+    "macro_premium": "",
+    "slot": "",
+    "warningTooManyDices": ""
+  },
+  "dices": {
+    "add": ""
+  },
+  "divulgar": {
+    "age": "",
+    "defaultDesc": "",
+    "defaultTitle": "",
+    "edit": "",
+    "mesa": "",
+    "mesas": {
+      "free": "",
+      "paid": ""
+    },
+    "oneshot": ""
+  },
+  "edit": {
+    "empty": ""
+  },
+  "edit_dices": {
+    "desc": "",
+    "hover": "",
+    "modal_label": "",
+    "modal_title": "",
+    "success": "",
+    "title": ""
+  },
+  "edit_photo": {
+    "success": ""
+  },
+  "emoji": {
+    "info": {
+      "id": "",
+      "mention": "",
+      "name": "",
+      "title": "",
+      "type": ""
+    },
+    "invalid": ""
+  },
+  "encrypt": {
+    "binary": "",
+    "morse": ""
+  },
+  "enviar_campanha": {
+    "btn": {
+      "0": "",
+      "entrar": ""
+    },
+    "camp_entrar": "",
+    "embed": {
+      "footer": "",
+      "indicado": "",
+      "sistema": "",
+      "tags": "",
+      "time": "",
+      "vagas": ""
+    },
+    "erro": "",
+    "indication": {
+      "0": "",
+      "1": "",
+      "2": ""
+    },
+    "modal": {
+      "date": "",
+      "form": "",
+      "sinopse": "",
+      "sinopse_placeholder": "",
+      "title": ""
+    },
+    "negado": {
+      "desc": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": ""
+      },
+      "title": ""
+    },
+    "send": "",
+    "tag_placeholder": "",
+    "tags": {
+      "0": {
+        "name": ""
+      },
+      "1": {
+        "name": ""
+      },
+      "2": {
+        "name": ""
+      },
+      "3": {
+        "name": ""
+      },
+      "4": {
+        "name": ""
+      },
+      "5": {
+        "name": ""
+      },
+      "6": {
+        "name": ""
+      },
+      "7": {
+        "name": ""
+      },
+      "8": {
+        "name": ""
+      },
+      "9": {
+        "name": ""
+      },
+      "10": {
+        "name": ""
+      },
+      "11": {
+        "name": ""
+      },
+      "12": {
+        "name": ""
+      }
+    },
+    "type": {
+      "0": "",
+      "1": "",
+      "2": ""
+    }
+  },
+  "error": {
+    "db": "",
+    "desc": "",
+    "field_name": "",
+    "field_value": "",
+    "title": ""
+  },
+  "ficha": {
+    "apagada": "",
+    "buttons": {
+      "4": {
+        "emoji": "",
+        "id": "",
+        "name": ""
+      },
+      "5": {
+        "emoji": "",
+        "id": "",
+        "name": ""
+      },
+      "6": {
+        "emoji": "",
+        "id": "",
+        "name": ""
+      }
+    },
+    "cmds": {
+      "editar_pericias": {
+        "niveis": {
+          "drop": {
+            "title": ""
+          },
+          "field1": "",
+          "title": ""
+        }
+      }
+    },
+    "created": "",
+    "dm_error": "",
+    "error1": "",
+    "ficha": {
+      "drop": {
+        "title": ""
+      },
+      "field1": "",
+      "title": ""
+    },
+    "hp": {
+      "drop": {
+        "title": ""
+      },
+      "field1": "",
+      "title": ""
+    },
+    "invalid": "",
+    "modal": {
+      "label": "",
+      "newSheetQuestion": "",
+      "newSheetTitle": "",
+      "title": {
+        "annotations": "",
+        "card": ""
+      }
+    },
+    "model": {
+      "erro": ""
+    },
+    "nohave_for_macro": "",
+    "notas": {
+      "title": ""
+    },
+    "pericias": {
+      "drop": {
+        "title": ""
+      },
+      "field1": "",
+      "title": ""
+    },
+    "premium": "",
+    "renomeada": "",
+    "status": {
+      "drop": {
+        "title": ""
+      },
+      "field1": "",
+      "title": ""
+    },
+    "title": ""
+  },
+  "gerar": {
+    "cidade": {
+      "field_1": "",
+      "field_2": "",
+      "field_3": "",
+      "tipo": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": ""
+      },
+      "title": ""
+    },
+    "imagem": {
+      "0": {
+        "img": "",
+        "title": ""
+      },
+      "1": {
+        "img": "",
+        "title": ""
+      }
+    },
+    "nome": {
+      "title": ""
+    },
+    "npc": {
+      "altura": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": ""
+      },
+      "corpo": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": ""
+      },
+      "eye": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": ""
+      },
+      "hair": {
+        "color": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "lengthi": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "type": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        }
+      },
+      "skin": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": ""
+      },
+      "titles": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": ""
+      }
+    }
+  },
+  "help": {
+    "button": "",
+    "desc": "",
+    "title": ""
+  },
+  "iniciativa": {
+    "emptyInitiative": "",
+    "errorAlreadyDeleted": "",
+    "errorEmptyInitiative": "",
+    "errorInvalidDice": "",
+    "errorNoLongerValid": "",
+    "errorNoPermission": "",
+    "errorTooMuchPeople": "",
+    "errorUndefinedEmbedReroll": "",
+    "modal_1": "",
+    "modal_2": "",
+    "modal_3": "",
+    "modal_title": "",
+    "placeholderRemovePlayer": "",
+    "round": "",
+    "successAddPlayer": "",
+    "successRemovePlayer": "",
+    "successSave": "",
+    "title": ""
+  },
+  "kc": {
+    "error": "",
+    "guide": {
+      "ad": "",
+      "text": ""
+    },
+    "invalid_bot": "",
+    "no_amount": "",
+    "other": {
+      "false": "",
+      "true": ""
+    },
+    "rank": "",
+    "success": "",
+    "vote_lembrete": "",
+    "your": {
+      "false": "",
+      "true": ""
+    }
+  },
+  "lc": {
+    "add": "",
+    "atm": {
+      "my": "",
+      "outro": ""
+    },
+    "disable": "",
+    "error": "",
+    "not_enough_lc": "",
+    "remove": "",
+    "set": "",
+    "top": {
+      "vazio": ""
+    }
+  },
+  "macro": {
+    "add": "",
+    "max_limit": ""
+  },
+  "minecraft": {
+    "button": "",
+    "erro": "",
+    "error": "",
+    "server_desc": "",
+    "server_title": "",
+    "title": ""
+  },
+  "new_key": "cu do bruno",
+  "pamonha": "ata senpai me mama uwu",
+  "premium": {
+    "ad": {
+      "desc": "",
+      "img": "",
+      "link": "",
+      "title": ""
+    },
+    "buy": ""
+  },
+  "rank": {
+    "sistemas": ""
+  },
+  "resgatar": {
+    "dice_desc": "",
+    "dice_skin": "",
+    "dice_skin_error": "",
+    "invalid": "",
+    "invalid_chat": "",
+    "reward": {
+      "0": "",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  },
+  "roleplay": {
+    "atack": "",
+    "bite": "",
+    "blush": "",
+    "bonk": "",
+    "cry": "",
+    "eat": "",
+    "slap": ""
+  },
+  "romanel": "dawdasdaw",
+  "server": {
+    "dono": "",
+    "icon": {
+      "title": ""
+    }
+  },
+  "sugerir": {
+    "placeholder": "",
+    "question": "",
+    "sended": "",
+    "titulo": ""
+  },
+  "support": {
+    "field1": "",
+    "field2": "",
+    "field_v1": "",
+    "field_v2": "",
+    "title": ""
+  },
+  "tesawdawdaw": {
+    "uwu": {
+      "adfawdaw": "sadwadawdasdaw"
+    }
+  },
+  "teste": "dawdasdawdaw",
+  "timer": {
+    "end": ""
+  },
+  "uncrypt": {
+    "binary": "",
+    "binaryError": "",
+    "morse": "",
+    "morseError": ""
+  },
+  "user": {
+    "title_avatar": "",
+    "title_info": ""
+  },
+  "user_no_perm": "",
+  "vote": {
+    "field1": "",
+    "field2": "",
+    "field_value1": "",
+    "field_value2": "",
+    "title": "",
+    "try_later": ""
+  },
+  "wiki": {
+    "spells": {
+      "error": ""
+    }
+  }
+}

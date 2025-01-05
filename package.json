@@ -1,0 +1,66 @@
+{
+  "name": "arkanus-i18n",
+  "description": "Cat Coding",
+  "version": "0.0.1",
+  "publisher": "bierner",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "activationEvents": [
+    "onCommand:extension.testCommand",
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "arkanus-i18n.testCommand",
+        "title": "Test Command"
+      }
+    ],
+    "menus": {
+      "statusBar": [
+        {
+          "command": "arkanus-i18n.testCommand",
+          "text": "Kraken i18n",
+          "alignment": "left",
+          "priority": 100
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Kraken i18n Configuration",
+      "properties": {
+        "arkanus-i18n.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Chave de API do Kraken i18n"
+        },
+        "arkanus-i18n.defaultFileName": {
+          "type": "string",
+          "default": "en",
+          "description": "Arquivo padrão de tradução que será usado para criar os demais"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@stylistic/eslint-plugin": "^2.9.0",
+    "@types/node": "^20",
+    "@types/vscode": "^1.73.0",
+    "eslint": "^9.13.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
+  }
+}
