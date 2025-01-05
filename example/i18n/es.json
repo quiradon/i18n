@@ -2,7 +2,7 @@
   "PageNotFound": {
     "btn": "Volver al inicio",
     "desc": "¡Ups! Parece que has encontrado una página que ya no existe. No te preocupes, a veces esto sucede al navegar. Mientras tanto, explora otras partes de nuestro sitio para encontrar lo que buscas.",
-    "title": "Página no encontrada"
+    "title": "Página no encontrada\n"
   },
   "changelogs": {
     "desc": "Descubre todas las últimas actualizaciones y mejoras de nuestro proyecto a través de nuestra página de registros de cambios. Mantente informado sobre cada nueva versión, correcciones de errores y funciones añadidas.",
