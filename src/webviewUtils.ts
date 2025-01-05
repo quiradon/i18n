@@ -53,7 +53,7 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
         <input type="text" id="search-input" placeholder="Buscar...">
         <div class="buttons">
           <button id="add-key-btn">Adicionar Chave</button>
-          <button id="translate-ai-btn">Traduzir com IA</button>
+          <button id="batch-translate-ai-btn">Traduzir Campos Vazios com IA</button>
           <button id="save-btn">Salvar</button>
         </div>
       </div>

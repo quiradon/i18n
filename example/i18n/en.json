@@ -1,663 +1,419 @@
 {
-  "baralho": {
-    "tarot": {
-      "cards": {
-        "6": "Love, choice, commitment, relationship🔁 Lack of love, separation, indecision, conflict",
-        "7": "Travel, progress, conquest, control🔁 Lack of direction, lack of control, recklessness, accident",
-        "8": "Balance, justice, law, order🔁Injustice, imbalance, corruption, partiality",
-        "9": "Solitude, introspection, wisdom, spirituality🔁Isolation, loneliness, withdrawal, alienation"
-      },
-      "title": "Random Tarot Card"
-    },
-    "youhand": "Your Hand"
+  "PageNotFound": {
+    "btn": "Back to Start",
+    "desc": "Oops! It looks like you found a page that no longer exists. Don't worry, sometimes this happens while browsing. In the meantime, explore other parts of our site to find what you're looking for.",
+    "title": "Page not Found"
   },
-  "changelog": {
-    "error": "This version does not exist"
-  },
-  "checkin": {
-    "end": "**End:**",
-    "error": {
-      "amout": "You've been taking too many breaks, I'm not going to count anymore, my friend, 40 breaks in one day is a shame!"
-    },
-    "pause": "**Pause:**",
-    "start": "**Start:**",
-    "unpause": "**Unpaused:**"
-  },
-  "clear": {
-    "msg": "% messages were deleted."
+  "changelogs": {
+    "desc": "Discover all the latest updates and improvements to our project via our changelogs page. Stay informed about each new version, bug fixes and added features.",
+    "title": "Updates"
   },
   "cmds": {
-    "task": {
-      "btn": "Edit Task",
-      "modal": {
-        "input1": {
-          "label": "The Title of Task",
-          "placeholder": "Task"
-        },
-        "input2": {
-          "label": "Describe the task",
-          "placeholder": "Description"
-        },
-        "title": "Task Editor"
-      },
-      "place": "Stats",
-      "sign": "Assigned to",
-      "status": {
-        "0": {
-          "desc": "Task is not started yet",
-          "label": "To Do"
-        },
-        "1": {
-          "desc": "Task is being worked on.",
-          "label": "In Progress"
-        },
-        "2": {
-          "desc": "Task is completed",
-          "label": "Done"
-        }
-      }
-    }
+    "desc": "Discover all the available commands in Mini Kraken, an online RPG system. Set up your game, manage the economy, interact with other players, and more. Explore its features to make your RPG experience even more engaging and dynamic!",
+    "title": "Commands"
   },
-  "coin_flip": {
-    "0": "Heads",
-    "1": "Tails"
+  "comum": {
+    "copy": "Copy"
   },
-  "coins": {
-    "drop": {
-      "coin": "Coin",
-      "label": "Select the coins you want to re-roll"
-    }
-  },
-  "common": {
-    "404": "Not found",
-    "add_btn": "Add Me",
-    "back": "Back",
-    "buy": {
-      "btn": "Buy"
-    },
-    "cancel": "Cancel",
-    "confirm": "Confirm",
-    "delete_btn": "Delete",
-    "donate_btn": "Support Project",
-    "down_btn": "Download",
-    "embed_not_found": "Embed not found",
-    "end": "Check-out",
-    "erro": {
-      "invalidmath": "The math expression cannot contain dices. If you want to roll dices, use the /d command.",
-      "invalidskin": "This skin does not exist.",
-      "noperm": {
-        "edit": "No Permission to view or edit messages in this chat!",
-        "rename": "The Bot is not allowed to change its name, add the prefix \\\".\\\" to enable."
-      },
-      "require_embed": "This interaction requires elements in the message that no longer exist."
-    },
-    "gender": {
-      "f": "Female",
-      "m": "Male"
-    },
-    "generate": "Generate",
-    "hair": "Hair",
-    "join_btn": "Join",
-    "message_not_found": "Message not found",
-    "new_sheet": "Create new character",
-    "next_btn": "Next",
-    "pause": "Pause",
-    "preview": "I wasn't supposed to push that button... It was just for you to see how the dice roll is going to turn out.",
-    "price": "Price",
-    "realyconfirm": "Are you sure you want to continue? This operation cannot be reversed!",
-    "rename": "Rename",
-    "reroll_btn": "Re-roll",
-    "save_btn": "Save",
-    "select": {
-      "btn": "Select"
-    },
-    "selected": {
-      "btn": "Selected"
-    },
-    "set_champion": "Set champion",
-    "set_message_override": {
-      "false": "Enable message override",
-      "no_perm": "Message override is disabled in this guild",
-      "true": "Disable message override"
-    },
-    "suport_btn": "Support",
-    "text": "Text",
-    "text_placeholder": "Enter text here.",
-    "unpause": "Unpause",
-    "vote_btn": "Vote for me",
-    "wiki_search_fail": "Didn't find what you're looking for? submit a new item"
-  },
-  "config": {
-    "button1": "Select the Game Master role",
-    "button2": "Select the RPG System",
-    "buttonChatDice": {
-      "false": "Message dices disabled",
-      "true": "Message dices enabled"
-    },
-    "buttonPrivateSheet": {
-      "false": "Public Sheets",
-      "true": "Private sheets"
-    },
-    "buttonReplaceMessages": {
-      "false": "Message override disabled",
-      "noPermission": "Message override (no permission)",
-      "true": "Message override enabled"
-    },
-    "desc": "Guild: <guild>",
-    "error": "Role not defined",
-    "errorBotPermissionMissing": "I need the following permissions to do that: <permissions>",
-    "errorPermissionMissing": "You have no permission to execute this command.",
-    "error_dm": "There's no support in the DMs.",
-    "field1": "Game Master role",
-    "field2": "RPG System",
-    "title": "Server Settings Editor"
-  },
-  "cooldown": {
-    "comandos": "⚠️ | Please wait <t:%0%:R> second(s) before using the command again."
-  },
-  "cu": {
-    "name": ""
-  },
-  "daily": {
-    "btn": "Redeem Reward",
-    "desc": "Your reward will be released %0%, in the meantime stay tuned for an announcement from our sponsors!",
-    "edited": "Your reward is now released, click the button below to redeem",
-    "footer": "Advertise here by contacting our team! /support",
-    "sucess": {
-      "title": "Daily reward successfully redeemed"
-    },
-    "title": "Daily Reward",
-    "try_later": "You have already Claimed Daily in the last 24 hours. You can reedem again <t:%0%:R>"
-  },
-  "dawdawdwad": "",
-  "dice": {
-    "dicename": "Dices:",
-    "errorAmountFaces": "Error: I don't have dices with more than 1000 faces.",
-    "errorBuyed": "You can't buy a skin you already own!",
-    "errorNoPermissionToReroll": "It wasn't you who rolled the dice, I won't let you reroll.",
-    "errorUndefinedEmbedReroll": "So you delete my embed and hope that I'll still remember what was in there beforehand??",
-    "errorUndefinedEmbedURLReroll": "This dice is too old for me to re-roll",
-    "invalid": "The roll expression you entered is invalid!",
-    "macro_premium": "This Slot is only for users or servers that have Premium!",
-    "slot": "Slot",
-    "warningTooManyDices": "Too many dices!"
+  "default": {
+    "desc": "Mini Kraken is an RPG website offering tools, articles, and content for RPG players and DMs. Here you will find information about Dungeons and Dragons, Call of Cthulhu, GURPS, FATE, Storytelling, and other RPG systems."
   },
   "dices": {
-    "add": "Create new macro"
-  },
-  "divulgar": {
-    "age": "Age Indication",
-    "defaultDesc": "Set the Description",
-    "defaultTitle": "Set the Title",
-    "edit": "Edit Info",
-    "mesa": "Campain",
-    "mesas": {
-      "free": "Free",
-      "paid": "Paid"
+    "desc": "Master the art of dice rolling with the Mini Kraken! Discover explosive rules, timeouts, keeps, and numerical expressions to elevate your RPG game.",
+    "page": {
+      "btn": "Roll dices",
+      "desc": "The dice in the tabletop RPG world can be a little confusing at first, but don't worry we are here to help you, below we have a complete guide on how to roll well, the atlas will teach you several tricks and tricks .",
+      "link": "Mini Kraken uses the dice roll library to perform all dice rolls, offering precision and flexibility for RPG players. With this tool, you can explore a wide range of possibilities, from simple rolls, such as 1d20 (one 20-sided die) or 3d6 (three 6-sided dice added together), to more advanced combinations, such as 2d10+5 (two 10-sided dice with a +5 bonus) or 4d6kh3 (four 6-sided dice, discarding the lowest result and adding the three highest, ideal for creating character attributes). To better understand how the notation used in rolls works and make the most of this functionality, <a href=\"https://dice-roller.github.io/documentation/guide/notation/\" target=\"_blank\">click here</a> and check out a complete guide with practical examples.",
+      "title1": "Test your rolls here."
     },
-    "oneshot": "Oneshot"
+    "title": "Dice Rolling System Syntax"
   },
-  "edit": {
-    "empty": "Empty."
-  },
-  "edit_dices": {
-    "desc": "Choose the dice you want to edit in the menu below",
-    "hover": "Click to edit",
-    "modal_label": "Enter the dice value",
-    "modal_title": "Edit Dice",
-    "success": "Edited successfully! Use /d to roll",
-    "title": "Rpg Macro Dices"
-  },
-  "edit_photo": {
-    "success": "Photo edited successfully!"
-  },
-  "emoji": {
-    "info": {
-      "id": "Emoji ID:",
-      "mention": "Emoji mention:",
-      "name": "Emoji name:",
-      "title": "Emoji Information",
-      "type": "Type of Emoji:"
+  "donate_text": "If you've made it this far, it's because you want to support the project! Visit our official server and go to the Tickets chat",
+  "footer": {
+    "about": "About",
+    "arkanus": {
+      "desc": "Turning your dreams into reality with several lines of code."
     },
-    "invalid": "The inserted emoji are invalid."
+    "legal": "Legal",
+    "map": "Site Map",
+    "priv": "Privacy Policy",
+    "quest": "Mission",
+    "start": "Start Page",
+    "team": "Team",
+    "tos": "Terms of use",
+    "util": "Utility"
   },
-  "encrypt": {
-    "binary": "Text converted to binary",
-    "morse": "Text converted to Morse"
+  "index": {
+    "dices": {
+      "desc": "Dice rolling is an essential part of tabletop RPG adventures. It brings the thrill of the unpredictable, where a character's fate can change with a single roll. Let Mini Kraken take care of it for you through /d",
+      "subtitle": "Got dice at home? No? No problem!",
+      "title": "Dice rolling"
+    },
+    "donate": {
+      "btn": "Support Project",
+      "desc": "Although Mini Kraken is free, we launched the Supporters Program to help with the maintenance expenses of the Project, which depends on machines running 24 hours a day to process data and scrolling. Each donation contributes directly to keeping the project active for another day. Remembering that the Project does not store any content belonging to publishers. Such data comes from external APIs that do not belong to us.",
+      "title": "Support the Project"
+    },
+    "features": {
+      "desc": "Mini Kraken is a bot for Discord that offers a wide variety of functions to help you on your tabletop RPG journey. Roll dice, manage initiatives, create characters, use name generators, and more. Check out just a small sample of everything the Mini Kraken can do for you!",
+      "title": "Explore the Functions"
+    },
+    "func": {
+      "card": {
+        "0": {
+          "desc": "Don't waste time calculating your character's health manually. With the /edit life command, Mini Kraken does the math for you, allowing you to focus on playing.",
+          "title": "Life Calculation"
+        },
+        "1": {
+          "desc": "The Bot has an advanced dice rolling system, allowing different combinations with the /d command. In addition to multiple data skins that can be accessed with the /data store",
+          "title": "Dice Roll"
+        },
+        "2": {
+          "desc": "Easily organize character information with Smart Tokens. With simple commands, with /ficha you can create and edit character sheets, making your table more agile and efficient.",
+          "title": "Smart Sheets"
+        },
+        "3": {
+          "desc": "Select one of the various RPG systems available to further customize your campaign, and if that's not enough, create your own system.",
+          "title": "Customization"
+        },
+        "4": {
+          "desc": "Find players for your RPG table with ease using Fortune's Campaign Disclosure system. With the /send campaign command, don't waste any more time looking for players, let Fortuna help you!",
+          "title": "Find Players"
+        },
+        "5": {
+          "desc": "Variety of name and letter generators to help with character creation. With the /generate name and /deck commands, you can generate random names, tarot cards or decks to enrich your narrative.",
+          "title": "Generators"
+        },
+        "6": {
+          "desc": "A broad Economy system called KC (Kraken Coins) that can be obtained in different ways, useful for functions such as data skins and customizations.",
+          "title": "Economy"
+        },
+        "7": {
+          "desc": "Find the spells and rituals in your spellbook more easily with our spell book that allows you to search in real time!",
+          "title": "Book of Spells"
+        },
+        "8": {
+          "desc": "This function here is yet to come, but rumors are that it will be a community bestiary.",
+          "title": "..."
+        }
+      }
+    },
+    "landing": {
+      "text": "The Best Way to Play **Tabletop RPG** on Discord"
+    },
+    "name": "Tabletop RPG Bot",
+    "sec2": {
+      "desc": "The Bot for discord, developed by fans for fans, aims to assist in the gaming experience of your favorite RPG. We do not own or claim rights to the games mentioned. We are a group of programmers and enthusiasts who simplify RPG systems to make the experience more enjoyable. This is not an official product or platform, and we are not affiliated with the creators of the games mentioned",
+      "title": "Adapted RPG systems"
+    },
+    "start": {
+      "btn1": "Add Fortuna",
+      "desc": "Elevate your tabletop RPG experience on Discord! Our tool designed to enhance your gaming sessions, whether in systems more roleplay and less math."
+    },
+    "status": {
+      "cmds": "Commands",
+      "desc": "Check out some performance data for Inanimalia Fortuna Tenebris Verteri - the best tabletop RPG bot for Discord in the creators' opinion. Stay up to date on your bot's performance and get the most out of your experience.",
+      "guilds": "Guilds",
+      "subtitle": "There are so many dice...",
+      "title": "Project statistics.",
+      "user": "Users",
+      "version": "Version"
+    },
+    "system": {
+      "desc": "Have access to the automatic sum and roll of attributes on your sheet by requesting attribute and skill tests with the command **/di **bring more practicality to your players!",
+      "subtitle": "Adapted RPG Systems",
+      "title": "Automatic Sheets for your adventures!"
+    }
   },
-  "enviar_campanha": {
+  "join_server_btn": "Join Oficial Guild",
+  "lang": "en",
+  "misc": {
     "btn": {
-      "0": "Next (1/3)",
-      "entrar": "Join in RPG"
+      "gencard": "Generate Card"
     },
-    "camp_entrar": "Whoever submitted the table did not leave a contact form, so please contact %0% directly to join the table",
-    "embed": {
-      "footer": "Sent by {user} - Use /send campaign to send a RPG table",
-      "indicado": "Recommended for:",
-      "sistema": "System:",
-      "tags": "Tags:",
-      "time": "Date/Time:",
-      "vagas": "N° Slots:"
+    "gen": {
+      "all": "All Names",
+      "fem": "Female",
+      "male": "Male"
+    }
+  },
+  "names": {
+    "article": {
+      "all": "All",
+      "btn": "Generate Names",
+      "desc": "This character name generator was created to be a starting point for you, helping you write a Book, RPG Campaign or game. If you are looking for names for your characters, you are in the right place.",
+      "female": "Female",
+      "male": "Male",
+      "title": "Name Generator"
+    }
+  },
+  "nav": {
+    "acervo": "Collection",
+    "add": "Add App",
+    "dices": {
+      "desc": "Test and learn how to roll.",
+      "title": "Dices Rolling"
     },
-    "erro": "The attached file is not a valid image (png/jpg)",
-    "indication": {
-      "0": "<:L_:982114090250043402>  `Free for all public` ",
-      "1": "<:16:982114090245840956>  `+16` ",
-      "2": "<:18:982114090342293504> `+18`"
-    },
-    "modal": {
-      "date": "Date/Time",
-      "form": "Form Link",
-      "sinopse": "Adventure Synopsis",
-      "sinopse_placeholder": "The story takes place in 1815, in France, and tells the story...",
-      "title": "Campaign Form"
-    },
-    "negado": {
-      "desc": {
-        "1": "The inserted image violates the disclosure requirements.",
-        "2": "The inserted text has too many spelling errors to be disclosed.",
-        "3": "The text you enter is unsuitable for disclosure.",
-        "4": "Insufficient information for disclosure, please resubmit by filling in all fields appropriately."
+    "docs": {
+      "changelogs": {
+        "desc": "View the bot's update history",
+        "name": "Changelogs"
       },
-      "title": "Disclosure Request Denied"
+      "cmds": {
+        "docs": "See the list of commands",
+        "title": "Commands List"
+      },
+      "dices": {
+        "desc": "Guide on how to roll dice in the bot",
+        "names": "Dice Notation"
+      },
+      "title": "Documentation"
     },
-    "send": "Send a request to the kraken guild",
-    "tag_placeholder": "Select tags to your campaign",
-    "tags": {
+    "donate": "Support Project",
+    "guide": "Guide",
+    "lang": {
+      "title": "Language"
+    },
+    "support": "Comunity",
+    "tools": {
+      "names": {
+        "desc": "Generate names for your characters",
+        "title": "Name Generator"
+      },
+      "poker": {
+        "desc": "Pull a random card from the deck",
+        "name": "Poker Cards"
+      },
+      "tarot": {
+        "desc": "Pull a card from the fortune deck",
+        "name": "Tarot Cards"
+      },
+      "title": "Tools"
+    }
+  },
+  "poker": {
+    "article": {
+      "desc": "A random playing card generator, which can somehow help to create a campaign or game.",
+      "title": "Poker Cards Generator"
+    },
+    "cards": {
+      "type": {
+        "0": "All Cards Suits",
+        "1": "Spades",
+        "2": "Clubes",
+        "3": "Hearts",
+        "4": "Diamonds"
+      }
+    },
+    "desc": "Generate random playing cards for your RPG campaigns or games. Enhance your storytelling with the Poker Cards Generator.",
+    "title": "Poker Cards"
+  },
+  "posts": {
+    "sistemas": {
       "0": {
-        "name": "Adventure"
+        "article": "Dungeons & Dragons, the legendary tabletop role-playing game, continues to capture the imagination of players of all ages around the world. For decades, this epic game has transported players to fantasy worlds filled with danger, treasure, and unforgettable adventure.In Dungeons & Dragons, players have the opportunity to create their own unique characters and embark on exciting journeys. They can choose from a wide variety of races, such as elves, dwarves and humans, and classes, such as warriors, wizards and rangers, each with special abilities and characteristics.The game mechanics are based on a combination of dice rolling and imagination. The Game Master, also known as Dungeon Master (DM), is responsible for creating the world, narrating the story and playing the NPCs (non-player characters), while players make decisions, explore dangerous environments, face monsters and unravel mysteries.Dungeons & Dragons is a collaborative game, in which imagination and interaction between players play a fundamental role. Together, they face epic challenges, solve intriguing puzzles, and forge bonds of friendship amid action and danger. The game also encourages creativity, allowing players to customize and develop their stories and characters over time.In addition to exciting adventures, Dungeons & Dragons provides players with the opportunity to connect in a vibrant community. In-person meetings at gaming tables, conventions dedicated to RPG and online platforms bring together enthusiasts from all over the world, sharing experiences, tips and creating lasting memories.With its rich mythology, countless supplements and expansions, and passionate fan base, Dungeons & Dragons remains an icon of the tabletop gaming universe. Through this game, the boundaries of imagination are challenged, camaraderie is strengthened, and epic adventures are experienced with every die roll.So, gather your friends, grab your dice, and get ready to dive into a world of magic and adventure with Dungeons & Dragons. The table is set, destiny awaits and glory is within your reach. What are you waiting for to join this incredible journey?",
+        "bg": "/static/img/bg/dnd.webp",
+        "card": {
+          "btn": "Learn more about DnD",
+          "desc": "A legendary fantasy RPG that allows players to create their own stories in worlds of sword and sorcery.",
+          "title": "Dungeons & Dragons"
+        },
+        "icon": "/static/img/rpg/DND.svg",
+        "legal": "The Dungeons & Dragons System currently belongs to [Wizards Of The Coast](https://company.wizards.com/en) which has all its rights reserved.The system books were published under the license [OPEN GAME LICENSE Version 1.1](https://en.wikipedia.org/wiki/Open_Game_License) Mini Kraken has no link to the publisher or creator, Mini Kraken is just a set of tools made to help masters and players from different systems. in the same way that we do not have their authorization to operate.",
+        "path": "dnd",
+        "tags": "RPG System,Fantasy,Medieval,Dungeons & Dragons"
       },
       "1": {
-        "name": "Science Fiction"
+        "article": "Paranormal Order is a new tabletop role-playing game that transports players to a world filled with mysteries and supernatural phenomena. In this dark and compelling setting, hidden secrets and evil entities threaten humanity, and only the brave agents of the Paranormal Order can face these threats.In the game, players take on the role of paranormal agents, members of a secret organization dedicated to protecting the world from the dangers of the unknown. Each agent has special abilities, such as clairvoyance, energy control, mediumship and keen perception, which help them face the supernatural challenges they encounter on their path.As players progress through missions, their characters gain experience and develop new paranormal abilities, becoming more proficient in facing the supernatural. Character evolution allows players to customize their skills according to their play style and prepare for even greater challenges.Paranormal Order offers an exciting and immersive experience for tabletop RPG fans and lovers of supernatural stories. With its engaging plot and captivating mechanics, the game promises to transport players to a world of suspense and mystery, where they will have to use their intelligence and courage to protect humanity from forces beyond.Get ready to face the unknown and discover dark secrets as you play Paranormal Order. Gather your friends, choose your paranormal abilities and embark on this exciting adventure where the line between the real and the supernatural becomes blurred. The fate of the paranormal world is in your hands!",
+        "bg": "/static/img/bg/ordem.webp",
+        "card": {
+          "btn": "Lean more about OP",
+          "desc": "A universe of paranormal investigation, where agents fight the supernatural and protect our reality.",
+          "title": "Ordem Paranormal"
+        },
+        "icon": "/static/img/rpg/Ordem.svg",
+        "legal": "Paranormal Order was created by Rafael Lange \"Cellbit\" Lange and is currently published by [Editora Jambo](https://jamboeditora.com.br/) which has all its rights reserved.The system books were published under the license[OPEN GAME LICENSE Version](https://en.wikipedia.org/wiki/Open_Game_License) 1.0a Mini Kraken has no link to the publisher or creator, Mini Kraken is just a set of tools made to help masters and players from different systems. in the same way that we do not have their authorization to operate.",
+        "path": "ordem",
+        "tags": "RPG System,Urban,Paranormal,Investigation"
       },
       "2": {
-        "name": "Fantasy"
+        "article": "Tormenta20, the acclaimed tabletop RPG, is back with a new edition that promises to immerse players in an epic fantasy world full of emotions. Since its original release, Tormenta has captured the imagination of RPG fans with its captivating stories, striking characters, and dynamic rules.In the new edition, Tormenta20 continues to explore the vast continent of Arton, a rich and vibrant setting with a unique mythology. Players have the freedom to create their own heroes, choosing from a wide variety of races and classes, from honorable warriors to powerful wizards and cunning rogues.The game mechanics are based on an updated rules system that combines simplicity and strategic depth. Players face exciting challenges, solve intriguing puzzles, and battle dangerous creatures in tactical battles. Character progression allows them to acquire special skills and powers, becoming true legendary heroes.With its enduring legacy and dedicated fan base, Tormenta20 continues to captivate players of all ages and experience levels. Whether you're a veteran of role-playing games or a beginner looking for a great adventure, Tormenta20 offers a gateway to a fantastic world filled with heroes, magic and imminent dangers.So get ready to embark on an unforgettable journey with Tormenta20. Choose your race, forge your destiny and face epic challenges in a fantasy world that awaits your courage. Gather your friends, get your data and embark on this exciting adventure. Arton's fate is in your hands!",
+        "bg": "/static/img/bg/space.webp",
+        "card": {
+          "btn": "Lean more about T20",
+          "desc": "An epic fantasy RPG set in the world of Arton, with intuitive and flexible rules",
+          "title": "Tormenta20"
+        },
+        "icon": "/static/img/rpg/Tormenta.svg",
+        "legal": "Tormenta is currently being published by [Editora Jambo](https://jamboeditora.com.br/) which has all its rights reserved.The system books were published under the license[OPEN GAME LICENSE Version](https://en.wikipedia.org/wiki/Open_Game_License) 1.0a Mini Kraken has no link to the publisher or creator, Mini Kraken is just a set of tools made to help masters and players from different systems. in the same way that we do not have their authorization to operate.",
+        "path": "tormenta",
+        "tags": "RPG System, Medieval, Fantasy"
       },
       "3": {
-        "name": "Western"
+        "article": "Carbon 2185 is a tabletop role-playing game set in a dystopian, cyberpunk future. In the year 2185, Earth is in ruins due to climate change and war. Powerful megacorporations control society and advanced technology is ubiquitous. Players take on the role of \"Operatives,\" highly trained individuals who undertake missions to combat injustice and uncover the world's dark secrets.Character Customization: Players can choose between different archetypes, such as hackers, mercenaries, spies, or melee fighters, each with unique abilities.Skill Development: Throughout the game, players can enhance their characters' cybernetic capabilities and acquire futuristic weapons.Decision-making: Players' choices influence the direction of the narrative, allowing them to shape the fate of the world within the game.Dice roll system: The game uses dice rolls and attributes to determine the success of actions and combats.",
+        "bg": "/static/img/bg/cyberpunk.webp",
+        "card": {
+          "btn": "Lean more about Carbon2185",
+          "desc": "A cyberpunk RPG set in a dystopian future, influenced by Blade Runner and Ghost in the Shell.",
+          "title": "Carbon2185"
+        },
+        "icon": "/static/img/rpg/Carbon.svg",
+        "legal": "The Carbon 2185 System was created by Robert Marriner-Dodds and is currently published by [Dragon Turtle Games](https://www.dragonturtlegames.com) which has all its rights reserved. The system's books were published under the license [OPEN GAME LICENSE Version](https://en.wikipedia.org/wiki/Open_Game_License#Open_Game_License) 1.0a Mini Kraken has the explicit consent of the system's creator.",
+        "path": "carbon",
+        "tags": "RPG system,Cyberpunk,Dystopia,#BoloQueimado"
       },
       "4": {
-        "name": "Supernatural"
+        "article": "Gaia: The Prelude is the newest modern reimagining of the tabletop RPG, bringing a medieval high fantasy setting to the magical world of Auroria. On Gaia you will be unique, walking a path forged by yourself, unlocking the locks of the Veil towards infinity.On Gaia, you can be whatever you want. There are twenty-one Legacies that define your character's appearance in addition to a fully customized hybrid combat system. Create your personality in your own way: A warrior who destroys armies, but who studies the secrets of the Veil in his free time?Separate what you do best in and out of combat as you wish.During your adventure, unlock the Veil within you by facing unique creatures from the Homuncularium, a unique monster creation system, with billions (literally) of possible combinations! And of course, you will be rewarded for this, with Learning Points that will make you acquire new powers, new skills, on the Combat Paths.The Combat Paths allow you to shape your character in your own way, meaning that a character does not need to follow just one Path, but rather, choose his own way.There are five starting Basic Paths that contain dozens of skills to choose from, and each skill can also be improved with one of three Enhancement options. And in the future, when you evolve your character you will be able to access Advanced Paths that bring hundreds of new skills that further enhance your experience.",
+        "bg": "/static/img/bg/Forest9.webp",
+        "card": {
+          "btn": "Lean more about Gaia",
+          "desc": "Medieval high fantasy RPG, with a modern and simplified system, where each character is unique.",
+          "title": "Gaia: The Prelude"
+        },
+        "icon": "/static/img/rpg/Gaia.svg",
+        "legal": "Gaia: The Prelude is developed by Auroria - Game Studio, which has all its rights reserved.The system's books were published under the license [OPEN GAME LICENSE](https://en.wikipedia.org/wiki/Open_Game_License#Open_Game_License) Version 1.0a, and are protected by the CBL (Brazilian Book Chamber)The Mini Kraken has the knowledge and authorization of the author Lyy to operate, in addition we recommend that you purchase the book and support its financing project at [CATARSE](https://www.catarse.me/gaiapreludio)",
+        "path": "gaia",
+        "tags": "RPG System,Medieval,Fantasy,Innovation"
       },
       "5": {
-        "name": "Horror"
+        "article": "3DeT Victory: The new RPG system that is capturing players' imaginations Since its creation, thousands of adventurers have ventured into limitless scenarios, creating unique characters and exploring fantastic worlds. Now, with the arrival of the Age of Arks, you can immerse yourself in an urban fantasy filled with dimensional mazes, each with their own dangers and treasures. Choose between the five themed cores and get ready for an epic journey. The 3DeT Victory Manual, containing complete rules, the Age of Arks scenario and previews of the thematic cores, is in crowdfunding on Catarse. Join this new era and be part of this exciting adventure!3DeT Victory offers a series of innovative mechanics that make the gaming experience exciting and immersive. Here are some of the main features and advantages of the system:Simplicity and Flexibility: The system was designed to be accessible to players of all experience levels. The rules are intuitive and easy to learn, allowing you to quickly dive into the action. Additionally, the flexibility of the system allows you to adapt the mechanics as needed to suit your playstyle.Narrative in Focus: 3DeT Victory puts narrative at the center of the game. The mechanics encourage the creation of captivating stories, with room for improvisation and creativity. Players can shape the world, develop complex characters, and explore intriguing plots.Thematic Cores: The five thematic cores offer variety and depth to the system. Each core features specific rules, unique characters and distinct challenges. Whether you're a space adventurer, a secret agent or a fantasy hero, there's a core for everyone.Age of Arks: The setting of Age of Arks is a fusion of fantasy and urban elements. The dimensional labyrinths called Arks are full of mysteries, strange creatures and hidden treasures. This setting offers endless possibilities for exploration and adventure.Complete Manual: The 3DeT Victory Manual is a complete source of information. In addition to the basic rules, it presents details about Age of Arks, master tips, adventure suggestions and previews of thematic cores. It's an essential guide for players and GMs alike.In short, 3DeT Victory combines simplicity, creativity and a rich setting to provide a unique RPG experience. Join the community and discover a world of possibilities!",
+        "bg": "/static/img/bg/Forest7.webp",
+        "card": {
+          "btn": "Learn more about 3DET",
+          "desc": "Heroes and villains clash in epic battles. Magic, technology and fantastic creatures collide.",
+          "title": "3DET Victory"
+        },
+        "icon": "/static/img/rpg/3DET.svg",
+        "legal": "3DET is currently being published by [Editora Jambo](https://jamboeditora.com.br/) which has all its rights reserved.The system books were published under the license[OPEN GAME LICENSE Version](https://en.wikipedia.org/wiki/Open_Game_License) 1.0a Mini Kraken has no link to the publisher or creator, Mini Kraken is just a set of tools made to help masters and players from different systems. in the same way that we do not have their authorization to operate.",
+        "path": "3det",
+        "tags": "RPG System,GURPS2"
       },
       "6": {
-        "name": "Medieval"
+        "article": "Pathfinder is a tabletop role-playing game that captivates the imagination with its rich narrative and tactical complexity. In Pathfinder, each player creates a unique character, choosing from a variety of races and classes, each with their own special abilities and backstories. Players embark on epic adventures, facing challenges that require both cunning and brute strength. The game is governed by a set of rules that help shape the world and the characters' interactions with it, but the true magic of Pathfinder lies in the freedom players have to shape their own stories.As a role-playing game, Pathfinder allows for unprecedented creative collaboration between players and the Game Master, who serves as narrator and arbiter of the rules. Together, they build a dynamic storyline that can change based on player decisions and dice rolls. This aspect of the game encourages players to delve deeply into their characters and the world around them, creating an immersive and personal experience.Additionally, Pathfinder is known for its detailed customization system, where players can tweak their characters with a wide range of skills, spells, and equipment. This allows each character to become truly unique, reflecting the player's choices and play style. With each session, characters grow in power and complexity, facing ever greater threats and uncovering mysteries that could change the game world.The world of Pathfinder is a place of wonder and danger, inhabited by mythical creatures and diverse peoples. From the depths of the darkest dungeons to the highest mountain peaks, Pathfinder's heroes explore unknown territories, discover ancient civilizations, and battle evil forces. With each adventure, they have the opportunity to acquire legendary treasures and forge their own destiny.In short, Pathfinder is more than a game; It is a gateway to fantasy worlds where imagination knows no limits. It is an invitation to tell collective stories where each choice has weight and each moment can become a lasting memory. Whether you're a meticulous strategist or a passionate storyteller, Pathfinder offers a rich, rewarding experience that unfolds in ways as unique as the players who come together to play.",
+        "bg": "/static/img/bg/Forest1.webp",
+        "card": {
+          "btn": "Learn more about Pathfinder",
+          "desc": "The story of brave heroes and cunning villains in a world full of terrible monsters and wonderful treasures.",
+          "title": "Pathfinder"
+        },
+        "icon": "/static/img/rpg/Pathfinder.svg",
+        "legal": "Pathfinder is currently being published by [NEWORDER](https://newordereditora.com/) which has all its rights reserved.The system books were published under the license[OPEN GAME LICENSE Version](https://en.wikipedia.org/wiki/Open_Game_License) 1.0a Mini Kraken has no link to the publisher or creator, Mini Kraken is just a set of tools made to help masters and players from different systems. in the same way that we do not have their authorization to operate.",
+        "path": "pathfinder",
+        "tags": "RPG System, Fantasy"
       },
       "7": {
-        "name": "Future"
-      },
-      "8": {
-        "name": "Post-Apocalyptic"
-      },
-      "9": {
-        "name": "Cyberpunk"
-      },
-      "10": {
-        "name": "Steampunk"
-      },
-      "11": {
-        "name": "Mystery"
-      },
-      "12": {
-        "name": "Detective"
-      }
-    },
-    "type": {
-      "0": "🎯 One Shot",
-      "1": "☕ Casual",
-      "2": "🏹 War Zone"
-    }
-  },
-  "error": {
-    "db": "A database is offline! Temporarily, the following commands will not work:",
-    "desc": "Oops! Something went wrong! Try again later.",
-    "field_name": "We apologize for the inconvenience.",
-    "field_value": "If the problem persists, contact the [support.](https://discord.gg/Nm3CypkQaq)",
-    "title": "Oops! the command is not available"
-  },
-  "ficha": {
-    "apagada": "Sheet deleted successfully!",
-    "buttons": {
-      "4": {
-        "emoji": "1310967686200557630",
-        "id": "edit_ficha_annotations",
-        "name": "Notes"
-      },
-      "5": {
-        "emoji": "1281493417737584731",
-        "id": "open_inventory",
-        "name": "Inventory"
-      },
-      "6": {
-        "emoji": "1307238435810971709",
-        "id": "edit_ficha_settings",
-        "name": "Settings"
-      }
-    },
-    "cmds": {
-      "editar_pericias": {
-        "niveis": {
-          "drop": {
-            "title": "Select the new skill status"
-          },
-          "field1": "Current skill:",
-          "title": "Edit skill of <player>"
-        }
-      }
-    },
-    "created": "Profile created successfully! Click /profile and select your new character to view.",
-    "dm_error": "There are no sheets in the DM!",
-    "error1": "You can't see other people's card, because you don't have the master role. An administrator can set the role with the </config:931725111948619847> command",
-    "ficha": {
-      "drop": {
-        "title": "Select an attribute to edit"
-      },
-      "field1": "Current skill:",
-      "title": "**Edit attributes of <player>**"
-    },
-    "hp": {
-      "drop": {
-        "title": "Actions"
-      },
-      "field1": "Current status:",
-      "title": "**Edit <name_at_hp.current.label> of <player>**"
-    },
-    "invalid": "Invalid sheet",
-    "modal": {
-      "label": "Set Value",
-      "newSheetQuestion": "Character name",
-      "newSheetTitle": "Character Edit",
-      "title": {
-        "annotations": "Edit notes",
-        "card": "Edit sheet"
-      }
-    },
-    "model": {
-      "erro": "Error: the value inserted is invalid"
-    },
-    "nohave_for_macro": "You need to have a sheet to save a roll shortcut. To create a sheet use </sheet:1088242872236658689> to create a new character.",
-    "notas": {
-      "title": "**Notes:**"
-    },
-    "pericias": {
-      "drop": {
-        "title": "Select a skill to edit"
-      },
-      "field1": "Current skills:",
-      "title": "**Edit skills of <player>**"
-    },
-    "premium": "Premium users can have up to 25 characters.",
-    "renomeada": "Sheet renamed successfully!",
-    "status": {
-      "drop": {
-        "title": "Select a status to edit"
-      },
-      "field1": "Current status:",
-      "title": "**Edit status of <player>**"
-    },
-    "title": "**<player>'s sheet**"
-  },
-  "gerar": {
-    "cidade": {
-      "field_1": "Name:",
-      "field_2": "Age:",
-      "field_3": "Type:",
-      "tipo": {
-        "0": "Military",
-        "1": "Religious",
-        "2": "Mercantil",
-        "3": "Scientific"
-      },
-      "title": "Generate City"
-    },
-    "imagem": {
-      "0": {
-        "img": "https://rpg.arkanus.app/static/img/misc/placeholders/computer_placeholder.webp",
-        "title": "Old Computer"
-      },
-      "1": {
-        "img": "https://rpg.arkanus.app/static/img/misc/placeholders/cartaAntiga_Placeholder.webp",
-        "title": "Old Leatter"
-      }
-    },
-    "nome": {
-      "title": "Names Generator"
-    },
-    "npc": {
-      "altura": {
-        "0": "Dwarf - From 4.59ft to 4.88ft",
-        "1": "Low - From 4.92ft to 5.21ft",
-        "2": "Medium - From 5.24ft to 5.54ft",
-        "3": "Tall - From 5.90ft to 6.52ft",
-        "4": "Huge - Over 6.56ft"
-      },
-      "corpo": {
-        "0": "Obese",
-        "1": "Fat",
-        "2": "Thin",
-        "3": "Ok",
-        "4": "Athletic",
-        "5": "Bodybuilder"
-      },
-      "eye": {
-        "0": "Greens",
-        "1": "Blue",
-        "2": "Cast. Dark",
-        "3": "Cast. Clear",
-        "4": "Blacks",
-        "5": "Gray",
-        "6": "Amber (honey)",
-        "7": "Heterochromia"
-      },
-      "hair": {
-        "color": {
-          "0": "Blonde",
-          "1": "Blacks",
-          "2": "dark brown",
-          "3": "light brown",
-          "4": "Red-haired",
-          "5": "White",
-          "6": "Gray",
-          "7": "Exotic"
+        "article": "Sorcerers and Curses offers an immersive experience that captures the essence of the Jujutsu Kaisen anime, allowing players to immerse themselves in a world where sorcerers combat curses with supernatural abilities. Through a detailed ranking system, players can develop their characters from rank 4 novices to powerful special rank sorcerers. With mechanics like multiclassing and varied equipment, the game encourages customization and strategy. Additionally, unique elements like Integrity and Boundary Vows add depth and challenge, inviting players to make meaningful choices that shape their journeys. For RPG enthusiasts looking for an adventure full of magic and mystery, \"Wizards and Curses\" is a gateway for anime fans who want to start playing role-playing games.",
+        "bg": "/static/img/bg/Forest4.webp",
+        "card": {
+          "btn": "Learn more about F&M",
+          "desc": "The system adapts the world of anime, with supernatural battles. In it, players can explore multiple fighting styles and rituals.",
+          "title": "Feiticeiros e Maldições"
         },
-        "lengthi": {
-          "0": "Bald",
-          "1": "Bald",
-          "2": "Very Short",
-          "3": "Short",
-          "4": "Tap on the shoulder",
-          "5": "Far away"
-        },
-        "type": {
-          "0": "Straight",
-          "1": "Wavy",
-          "2": "Curly",
-          "3": "Afro"
-        }
-      },
-      "skin": {
-        "0": "Yellow",
-        "1": "White",
-        "2": "Indigenous",
-        "3": "Brown",
-        "4": "Black",
-        "5": "Albinism"
-      },
-      "titles": {
-        "0": "Hair Size:",
-        "1": "Hair color:",
-        "2": "Type of Hair",
-        "3": "Characteristics:",
-        "4": "Gender",
-        "5": "Eye Colors",
-        "6": "Skin Color",
-        "7": "Body",
-        "8": "Stature",
-        "9": "Body Type"
+        "icon": "/static/img/rpg/Feiticeiros.svg",
+        "legal": "Feiticeiros e Maldições is an Open Source RPG system made by the author [Setsugiri](https://setsugiri.carrd.co/) Using the[OPEN GAME LICENSE Version](https://en.wikipedia.org/wiki/Open_Game_License) 1.0a Mini Kraken has the permission of the system's creator to operate.The system books can be downloaded from the [Official Discord] server (https://discord.com/invite/UGg6QUNNRp)",
+        "path": "feiticeiros",
+        "tags": "RPG System,Anime,Magic"
       }
     }
   },
-  "help": {
-    "button": "Click here, to see my amazing and useful list of commands",
-    "desc": "I am a bot made for fans of tabletop RPG, be it D&D or Paranormal Order, designed with the objective of helping you run tabletop RPG campaigns. I am here to help with all my tentacles at your disposal",
-    "title": "Hello, My name is Fortuna, but call me UNA"
-  },
-  "iniciativa": {
-    "emptyInitiative": "```ansi\u001b[0;31mThe initiative is empty.\u001b[0m```",
-    "errorAlreadyDeleted": "The selected player was already removed",
-    "errorEmptyInitiative": "The initiative roll is empty. At least one player must be present to do this.",
-    "errorInvalidDice": "The dice inserted is incorrect.",
-    "errorNoLongerValid": "This interaction is no longer valid",
-    "errorNoPermission": "You can't save this initiative, because you don't have the master role. An administrator can set the role with the </config:931725111948619847> command",
-    "errorTooMuchPeople": "The limit of the initiative roll is 25 characters",
-    "errorUndefinedEmbedReroll": "So you delete my embed and hope that I'll still remember what was in there beforehand??",
-    "modal_1": "Initiative dice",
-    "modal_2": "Character name",
-    "modal_3": "Character index",
-    "modal_title": "Initiative roll",
-    "placeholderRemovePlayer": "Select the player to be removed",
-    "round": "Round: ",
-    "successAddPlayer": "Added successfully!",
-    "successRemovePlayer": "Removed successfully!",
-    "successSave": "Saved successfully!",
-    "title": "Initiative Roll Helper 🎲"
-  },
-  "kc": {
-    "error": "Error getting user information from the database. Contact /support",
-    "guide": {
-      "ad": "Don't know how to get them? use /kc guide",
-      "text": "### **What are Kc's**Kc's are small fragments of the meteorite that sealed the Kraken's power, before it found its current host Fortuna.Because it is emotionally dependent, you can use these fragments as a bargaining chip when trading with it.**What are they for?**Fragments can be used in </store dices:1207784542677630987> to customize dice rolls, and their usefulness will be expanded in the near future.**How ​​to earn Kc's?**You can earn Kc's by [voting for the bot](https://top.gg/bot/899421595125288961), with the daily reward (</daily:1192682956398006294>), or by participating in special events, there are plans for other means in the future."
-    },
-    "invalid_bot": "You can't send money to robots!",
-    "no_amount": "You don't have enough <:kc:1263608165992497212> for that.",
-    "other": {
-      "false": "<user> has <:kc:1263608165992497212> **<kc>** Kraken Coins!",
-      "true": "<user> has <:kc:1263608165992497212> **<kc>** Kraken Coins! <user> is in **#<rank>** in the ranking, use ****</kc top:1032867698104872970> to see!"
-    },
-    "rank": "Kraken Coins Rank | Top",
-    "success": "<:analise:1263609129495429240> | <@<user>> sent **<amount>** <:kc:1263608165992497212> to <@<alvo>>!",
-    "vote_lembrete": "You can vote for me again! Use </vote:962823170656731217> to vote and get <:kc:1263608165992497212>\"",
-    "your": {
-      "false": "You have <:kc:1263608165992497212> **<kc>** Kraken Coins!",
-      "true": "You have <:kc:1263608165992497212> **<kc>** Kraken Coins! You are in **#<rank>** in the ranking, use **</kc top:1032867698104872970>** to see!"
-    }
-  },
-  "lc": {
-    "add": "`%0%` %1% was added to %2%'s account, currently he has %3%",
-    "atm": {
-      "my": "You Have",
-      "outro": "have"
-    },
-    "disable": "The local coins are disabled in this guild.",
-    "error": "The Operation failed! the values will have been changed!",
-    "not_enough_lc": "The User does not have enough coins to be removed.",
-    "remove": "`%0%` %1% was removed from %2%'s account, he currently has %3%",
-    "set": "The %0% of %1% has been set to `%2%`",
-    "top": {
-      "vazio": "The LC Rank was empty"
-    }
-  },
-  "macro": {
-    "add": "Macro die successfully updated",
-    "max_limit": "Maximum dices limit reached! (25/25)"
-  },
-  "minecraft": {
-    "button": "Download Skin",
-    "erro": "Oops. I can't connect to the square world.",
-    "error": "[ERRO] A Minecraft nick can't contain special characters.",
-    "server_desc": "Minecraft Server Banner",
-    "server_title": "Minecraft Server",
-    "title": "<player>'s Skin"
-  },
-  "new_key": "",
-  "pamonha": "",
   "premium": {
-    "ad": {
-      "desc": "Purchase premium and unlock this and other exclusive resources, in addition to of course supporting this wonderful project that I am myself.",
-      "img": "https://rpg.arkanus.app/static/img/util/bot/en/premium.webp",
-      "link": "https://rpg.arkanus.app/#premium",
-      "title": "Premium Feature"
+    "0": {
+      "desc": "A Plan for Lone Wolves Who Want to Access Resources Alone.",
+      "title": "Warrior"
     },
-    "buy": "To unlock these resources and many others, consider supporting the project by purchasing a premium."
-  },
-  "rank": {
-    "sistemas": "# RPG Systems RankShows the ranking taking into account the number of tokens that exist for this system in Una."
-  },
-  "resgatar": {
-    "dice_desc": "You can view and equip your dice skins at </store dices:1207784542786818098>",
-    "dice_skin": "Skin %skin_name% Redeemed successfully!",
-    "dice_skin_error": "You already have this skin in your inventory!",
-    "invalid": "<:eita:1078029073420390480> The code you entered is invalid. If you believe this is an error, contact support.",
-    "invalid_chat": "<:eita:1078029073420390480> Oops, it seems you're trying to redeem a Premium from a server without being in a server",
-    "reward": {
-      "0": "<:analise:1078029065413472256> <:kc:1263608165992497212> sucessfully redeemed! ",
-      "1": "<:analise:1078029065413472256> Your Premium has been successfully activated",
-      "2": "<:analise:1078029065413472256> Premium has been successfully activated on <servidor>",
-      "3": "<:analise:1078029065413472256> Dice successfully activated!"
+    "1": {
+      "desc": "One for all and all for one, with this plan everyone on your server benefits!",
+      "title": "Adventurous"
+    },
+    "2": {
+      "desc": "For true lovers of Inanimalia Fortuna!",
+      "title": "Octopus Hero"
+    },
+    "feat": {
+      "0": "+5 Macro Slots (per character)",
+      "1": "+24 Character Slots",
+      "2": "Double the note space",
+      "3": "Create your own Homebrew system",
+      "4": "Millions of Kraken Coins",
+      "5": "Priority Support",
+      "6": "Premium features",
+      "7": "One Account",
+      "8": "One Guild",
+      "9": "Exclusive Playtests",
+      "10": "Donor Position (Profile and Discord)",
+      "11": "Supreme Donor Position (Profile and Discord)",
+      "12": "For Three Guilds",
+      "98": "Team Foot Pack and Clube da Una",
+      "99": "Poetic license to demand Devs"
     }
   },
-  "roleplay": {
-    "atack": "## %user% Atack %target%",
-    "bite": "## %user% Bite %target%",
-    "blush": "## %user% blushed",
-    "bonk": "## %user% Bonked %target%",
-    "cry": "%user% start Cry!",
-    "eat": "## %user% has eating!",
-    "slap": "## %user% slap %target%!"
+  "price": {
+    "0": "$3/Month",
+    "1": "$5/Month",
+    "2": "$7/Month"
   },
-  "romanel": "",
-  "server": {
-    "dono": "Owner",
-    "icon": {
-      "title": "<guild.name> Icon"
+  "privacy": {
+    "0": {
+      "desc": "Mini Kraken is owned by the Developers who are responsible for collecting and managing your Data within the application. This document explains what data is collected, the reason for collecting it, and how we maintain the security of this data."
+    },
+    "1": {
+      "desc": "When Using the application we collect User and Server information in addition to other information you provide (Including, but not limited to: Names, Ids, User and Guild Images) In addition, we collect information within the application, which is stored as per example the RPG token system. The only message content collected occurs in the dice roll system without the presence of slash. Message contents are not stored, so developers do not have access to them.The processing of this data allows the operation of various functionalities within the application, such as identifications to save information in the database, individual application settings for each guild and user, as well as customization of the application interface to provide an improved user experience.",
+      "title": "Information Collected"
+    },
+    "2": {
+      "desc": "You have the following guaranteed rights regarding your data:The right to be informed.The right to rectification.The right to delete.The right to verification.The right to objection.By using the application, it is understood that you agree with the terms and data collected.",
+      "title": "Your rights"
+    },
+    "3": {
+      "desc": "We guarantee the security of the information you provide on servers and computers stored in secure and controlled environments, protected against unauthorized access, use and disclosure. We maintain administrative, technical and physical security measures to protect data against unauthorized access, use, protection and disclosure. However, no data transmission over the Internet can be guaranteed to be completely secure.",
+      "title": "Information security"
+    },
+    "4": {
+      "desc": "If you would like more information about this Privacy Policy or access information related to your individual rights and Personal Information, you can open a ticket at guild support (/support) or send an email to support@arkanus.app.",
+      "title": "Contact"
+    },
+    "desc": "Read the Privacy Policy for Mini Kraken. Learn how we collect, use, and protect your data.",
+    "title": "Privacy Policy"
+  },
+  "system": {
+    "default": {
+      "desc": "Learn about the %system% system and how to play on Discord with the Mini Kraken RPG Bot. This practical guide offers tips for exploring and having the most fun in your RPG adventures.",
+      "playDiscord": "How to Play %system% on Discord",
+      "playDiscordDesc": "%system% is one of the systems available to be played using the Mini Kraken as a dice rolling facilitator, to define the system is simple, just type /configure and go to the system tab and then define it, thus giving you smart chips, and dynamic data to streamline your section.After the settings, you will be able to use several tools to help your table, such as the smart chip system that can be accessed through /ficha that integrates dice rolling, that is, when rolling dice through /di, all the mathematics is done by UNA.",
+      "title": "Learn how to play %system% on Discord"
     }
   },
-  "sugerir": {
-    "placeholder": "Type your suggestion here...",
-    "question": "Do you want to send your suggestion?",
-    "sended": "Your suggestion has been sent successfully!",
-    "titulo": "Suggestion Box"
+  "tarot": {
+    "article": {
+      "desc": "A random Tarot card generator, which can somehow help to make a campaign or game.",
+      "title": "Tarot Card Generator"
+    },
+    "desc": "Generate random Tarot cards to enhance your RPG campaigns or games. Explore the Mini Kraken Tarot Card Generator for creative inspiration.",
+    "title": "Tarot Cards"
   },
-  "support": {
-    "field1": "Help",
-    "field2": "But why would I vote?",
-    "field_v1": "If you need help, you can enter my support server by clicking the button below!  Use to solve doubts, report bugs, suggestions and much more!",
-    "field_v2": "If you want to support me, you can click the Vote button below and help me grow! or acquire Premium",
-    "title": "Hmmm... I see you need help!"
-  },
-  "tesawdawdaw": {
-    "uwu": {
-      "adfawdaw": ""
-    }
-  },
-  "teste": "dawdawasddaw",
-  "timer": {
-    "end": "Timeout!"
-  },
-  "uncrypt": {
-    "binary": "Binary converted to text ",
-    "binaryError": "Error | The value provided for the \"binary\" field is not valid. A binary value is a number that can only have two values: 0 or 1.",
-    "morse": "Morse converted to text",
-    "morseError": "Error | The value provided for the \"Morse code\" field is not valid. A Morse code value must be a sequence of dots and dashes. For example, the value \".-..\" is valid, but the value \".-.-.\" is not valid. Please check the provided value and try again."
-  },
-  "user": {
-    "title_avatar": "Profile picture of <user>",
-    "title_info": "Information of <user>"
-  },
-  "user_no_perm": "You do not have permission to use this command.",
-  "vote": {
-    "field1": "Reward for voting",
-    "field2": "But, why would I vote?",
-    "field_value1": "You will get Kraken Coins (KC) that you can use for various things on the bot. Like for example sending items to the /wiki items",
-    "field_value2": "Voting for the bot helps with its dissemination and also helps to keep the bot online and with new updates.",
-    "title": "Vote for me and get my happiness",
-    "try_later": "You have already voted in the last 12 hours and won %0% <:kc:1263608165992497212>. You can vote again <t:%1%:R>"
-  },
-  "wiki": {
-    "spells": {
-      "error": "I didn't find this item!!!!!"
-    }
+  "tos": {
+    "0": {
+      "desc": "Arkanus, hereinafter referred to as \"developers\", is a team dedicated to developing a variety of projects and applications, including but not limited to (Mini Kraken BOT, also known as Inanimalia Fortuna Tenebris Verteri). By using our services, you agree to the following terms. By accessing our Services, you automatically agree to the terms, conditions and privacy policies presented below. If you are the age of majority in your jurisdiction, or if you are between the ages of 13 and the age of majority and your legal guardian has reviewed and agrees to these Terms, you are bound by them. If you disagree with any part of these terms and conditions, please immediately stop using our services.",
+      "title": "Introduction"
+    },
+    "1": {
+      "desc": "Unless otherwise expressly stated, all intellectual property rights in content published on the Service belong to the Service and its licensors. All rights relating to intellectual property are strictly reserved, and we reserve the right to take legal action as necessary through our official communication channels.You are not authorized to:- Sell, rent or sublicense any material related to Mini Kraken, Fortuna, or similar.- Redistribute content from Mini Kraken, Fortuna, or similar without express authorization.- Intentionally attempt to circumvent the Service's security mechanisms in any way without prior authorization.Some areas of the Service offer the possibility of personalization by users, without prior filtering or review by us before publication.Comments and customizations solely reflect the opinions of their respective authors. To the extent permitted by applicable law, the Service is not legally responsible for such comments/personalizations or for any damages, risks or expenses arising from their use, posting or appearance on the Service.We reserve the right, without obligation, to remove any comment or personalization that we consider inappropriate, offensive or in violation of these Terms and Conditions.By using our Service, you agree to protect and defend us against all claims, suits, damages, costs and expenses arising from or relating to your use of the Service. No link should be placed on any Website that may be interpreted as defamatory, obscene, criminal or violating the rights of any third party.By posting comments, customizations or other content on our Service, you represent and warrant that:You have the legal right to post this content and have all necessary licenses and authorizations to do so.Your comments, customizations, or other content do not violate any third-party intellectual property rights, including copyrights, patents, or trademarks.Your comments, customizations or other content do not contain defamatory, libelous, offensive, indecent or unlawful material, or invade any third party's privacy.Your comments, customizations, or other content will not be used to solicit or promote illegal activities.By posting comments, customizations or other content on our Service, you grant the Service (including Mini Kraken, Developers and partners) an irrevocable, non-exclusive, worldwide, royalty-free, sublicensable license to use, reproduce, adapt, modify, publish, translate, create derivative works of, distribute, publicly perform and publicly display such content in any format, media or technology now known or hereafter developed.",
+      "title": "License"
+    },
+    "2": {
+      "desc": "We reserve the right, in our sole discretion, to modify or revise these Terms at any time, and you agree to be bound by any such modifications or revisions. Any changes or modifications will be effective one week after posting on the Service, and your continued use of the Service after the effective date will constitute your acceptance of and agreement to such changes or modifications. If you object to any change or modification, your sole recourse is to discontinue use of the Service.We reserve the right to modify or discontinue the Service (or part thereof) at any time, with or without notice, without limitation for a breach of the Terms.",
+      "title": "Reservation of Rights and Modifications"
+    },
+    "3": {
+      "desc": "In situations where the user performs any of the actions listed below, it may result in an automatic breach of the terms of use, which may generate consequences ranging from warnings to even the removal of access to the service and cancellation of the account or access to the service, with or without prior notice:Assign a Real Value to KCs (Virtual Economies) and sell them for money or real goods.Submit any inappropriate content to support or review teams.Abuse Bugs or Systems in order to gain an advantage or damage our structures.Abuse of Support Means.Attempt to circumvent any service system in a way that harms the functioning of the service or other users, without prior authorization from the development team.",
+      "title": "User Prohibitions and Responsibilities"
+    },
+    "4": {
+      "desc": "We will not be held legally responsible for any content that appears on our Service as it is powered by the community. If there is a violation of intellectual property or discomfort, the user can request a review or removal of one or more contents by opening a removal request through our Support.If you find any link or content on our Service that is in any way offensive or infringes your copyright, you have the right and freedom to contact us and inform us of the problem at any time. We will consider requests to remove links and content, but we have no obligation to remove any links to our Service or respond directly to your request unless it infringes your copyright.Send mail to suporte@arkanus.app",
+      "title": "Responsibility for Content"
+    },
+    "desc": "Read the Terms of Service for Mini Kraken. Understand your rights and responsibilities when using our services.",
+    "tags": "Legal,Legal,Terms of Use,Legislation",
+    "title": "Terms of Service"
   }
 }

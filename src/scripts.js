@@ -1,10 +1,11 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     const vscode = acquireVsCodeApi();
     const createKeyButton = document.getElementById('add-key-btn');
-    const batchTranslateButton = document.getElementById('translate-ai-btn');
     const saveButton = document.getElementById('save-btn');
     const searchInput = document.getElementById('search-input');
     const searchType = document.getElementById('search-type');
+    const batchTranslateButton = document.getElementById('batch-translate-ai-btn');
+    let referenceLanguage = 'en'; // Valor padrão
 
     if (createKeyButton) {
         createKeyButton.addEventListener('click', () => {
@@ -20,6 +21,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             batchTranslate();
             updateHighlight();
             updateProgress();
+        });
+    }
+
+    if (batchTranslateButton) {
+        batchTranslateButton.addEventListener('click', () => {
+            batchTranslateEmptyFields();
         });
     }
 
@@ -48,14 +55,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     window.addEventListener('message', event => {
         const message = event.data;
-        if (message.command === 'updateTranslations') {
+        if (message.command === 'setReferenceLanguage') {
+            referenceLanguage = message.referenceLanguage;
+        } else if (message.command === 'updateTranslations') {
             updateTranslations(message.translations);
         } else if (message.command === 'translateAIResponse') {
-            const textarea = document.querySelector(`textarea[data-key="${message.key}"][data-language="${message.language}"]`);
+            const textarea = document.querySelector(`textarea[data-key="${CSS.escape(message.key)}"][data-language="${CSS.escape(message.language)}"]`);
             if (textarea) {
                 textarea.value = message.translatedText;
                 textarea.style.borderColor = 'lightgreen';
             }
+        } else if (message.command === 'batchTranslateAIResponse') {
+            for (const key in message.translatedBatch) {
+                const textarea = document.querySelector(`textarea[data-key="${CSS.escape(key)}"][data-language="${CSS.escape(message.language)}"]`);
+                if (textarea) {
+                    textarea.value = message.translatedBatch[key];
+                    textarea.style.borderColor = 'lightgreen';
+                }
+            }
+            updateProgress();
         }
     });
 
@@ -184,7 +202,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     const key = this.dataset.key;
                     const language = this.dataset.language;
                     const referenceLanguage = 'en'; // Defina o idioma de referência aqui
-                    const referenceText = document.querySelector(`textarea[data-key="${key}"][data-language="${referenceLanguage}"]`).value;
+                    const referenceText = document.querySelector(`textarea[data-key="${CSS.escape(key)}"][data-language="${CSS.escape(referenceLanguage)}"]`).value;
                     vscode.postMessage({
                         command: 'translateAI',
                         key: key,
@@ -233,6 +251,44 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     function batchTranslate() {
         // Implementar lógica de tradução em lote
+    }
+
+    async function batchTranslateEmptyFields() {
+        const translations = collectTranslations();
+        const emptyFields = [];
+
+        document.querySelectorAll('textarea.resizeable').forEach(textarea => {
+            if (!textarea.value.trim()) {
+                emptyFields.push({
+                    key: textarea.dataset.key,
+                    language: textarea.dataset.language
+                });
+            }
+        });
+
+        const languages = [...new Set(emptyFields.map(field => field.language))];
+
+        for (const language of languages) {
+            const fieldsForLanguage = emptyFields.filter(field => field.language === language);
+
+            for (let i = 0; i < fieldsForLanguage.length; i += 20) {
+                const batch = fieldsForLanguage.slice(i, i + 20);
+                const batchTranslations = {};
+
+                batch.forEach(field => {
+                    const referenceText = document.querySelector(`textarea[data-key="${CSS.escape(field.key)}"][data-language="${CSS.escape(referenceLanguage)}"]`).value;
+                    batchTranslations[field.key] = referenceText;
+                });
+
+                vscode.postMessage({
+                    command: 'batchTranslateAI',
+                    batch: batchTranslations,
+                    language: language
+                });
+
+                await new Promise(resolve => setTimeout(resolve, 10000)); // Espera 10 segundos
+            }
+        }
     }
 
     function updateKey(oldKey, newKey) {

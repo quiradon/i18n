@@ -11,6 +11,8 @@ const {
 
 //pegue a chave de api nas configurações
 const apiKey = vscode.workspace.getConfiguration().get('arkanus-i18n.apiKey');
+// pegue o idioma de referência nas configurações
+const referenceLanguage = vscode.workspace.getConfiguration().get('arkanus-i18n.defaultFileName') || 'en';
 
 //crie uma nova instância do GoogleGenerativeAI
 const genAI = new GoogleGenerativeAI(apiKey);
@@ -36,6 +38,21 @@ async function IATraduzirString(texto: string, idioma: string) {
   const result = await chatSession.sendMessage(`Translate the following content into ${idioma}: '${texto}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return only the translated string.`);
   console.log(result.response.text());
   return result.response.text();
+}
+
+
+async function IATraduzirLista(lista: { [key: string]: string }, idioma: string) {
+  const chatSession = model.startChat({
+    generationConfig,
+    history: [
+    ],
+  });
+  const listaFormatada = Object.entries(lista).map(([key, value]) => `${key}: ${value}`).join(', ');
+  const result = await chatSession.sendMessage(`Translate the following key-value pairs into ${idioma}: '${listaFormatada}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return the translated key-value pairs in json at same format without enclosing it in \`\`\`json and \`\`\`.`);
+  
+  const translatedPairs = JSON.parse(result.response.text());
+  console.log(translatedPairs);
+  return translatedPairs;
 }
 
 
@@ -85,6 +102,11 @@ export function activate(context: vscode.ExtensionContext) {
 
         panel.webview.html = getWebviewContent(translations, panel.webview, context);
 
+        panel.webview.postMessage({
+          command: 'setReferenceLanguage',
+          referenceLanguage: referenceLanguage
+        });
+
         panel.webview.onDidReceiveMessage(
           async message => {
             switch (message.command) {
@@ -118,6 +140,17 @@ export function activate(context: vscode.ExtensionContext) {
                 const translatedText = await IATraduzirString(message.text, message.language);
                 translations[message.language][message.key] = translatedText;
                 panel.webview.postMessage({ command: 'translateAIResponse', key: message.key, language: message.language, translatedText });
+                break;
+              case 'batchTranslateAI':
+                const translatedBatch = await IATraduzirLista(message.batch, message.language);
+                for (const key in translatedBatch) {
+                  translations[message.language][key] = translatedBatch[key];
+                }
+                panel.webview.postMessage({
+                  command: 'batchTranslateAIResponse',
+                  translatedBatch: translatedBatch,
+                  language: message.language
+                });
                 break;
               // ...existing code...
             }
