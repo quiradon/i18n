@@ -1,8 +1,8 @@
 {
   "name": "arkanus-i18n",
-  "description": "Cat Coding",
-  "version": "0.0.1",
-  "publisher": "bierner",
+  "description": "Mini Kraken i18n extension for Visual Studio Code",
+  "version": "0.0.4",
+  "publisher": "arkanus",
   "engines": {
     "vscode": "^1.73.0"
   },
@@ -46,8 +46,9 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run copy-assets && tsc -p ./",
+    "compile": "npm run copy-assets && tsc -watch -p ./",
+    "copy-assets": "copyfiles -u 1 src/scripts.js out/",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "dependencies": {
@@ -59,6 +60,7 @@
     "@stylistic/eslint-plugin": "^2.9.0",
     "@types/node": "^20",
     "@types/vscode": "^1.73.0",
+    "copyfiles": "^2.4.1",
     "eslint": "^9.13.0",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.16.0"

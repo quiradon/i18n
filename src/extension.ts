@@ -5,8 +5,6 @@ import axios from 'axios';
 
 const {
   GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
 } = require("@google/generative-ai");
 
 //pegue a chave de api nas configurações

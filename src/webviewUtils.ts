@@ -30,10 +30,8 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
   }).join('');
 
   const headers = languages.map(language => `<th>${language}</th>`).join('');
-
-  const scriptUri = webview.asWebviewUri(vscode.Uri.file(path.join(context.extensionPath, 'src', 'scripts.js')));
-  const styleUri = webview.asWebviewUri(vscode.Uri.file(path.join(context.extensionPath, 'src', 'styles.css')));
-
+  console.log(context.extensionUri);
+  // @ts-ignore
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -41,8 +39,98 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Kraken i18n</title>
-      <link rel="stylesheet" type="text/css" href="${styleUri}">
       <style>
+              body {
+          font-family: Arial, sans-serif;
+          padding: 20px;
+          background-color: var(--vscode-editor-background);
+          color: var(--vscode-editor-foreground);
+        }
+        .section {
+          margin-bottom: 20px;
+        }
+        .controls {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+        .controls select {
+          padding: 5px;
+          background-color: var(--vscode-button-background);
+          color: var(--vscode-button-foreground);
+          border: 1px solid var(--vscode-button-border);
+        }
+        .controls input {
+          flex-grow: 1;
+          padding: 5px;
+          background-color: var(--vscode-input-background);
+          color: var(--vscode-input-foreground);
+          border: 1px solid var(--vscode-input-border);
+        }
+        .controls .buttons {
+          margin-left: auto;
+          display: flex;
+          gap: 10px;
+        }
+        .controls button {
+          padding: 10px 20px;
+          background-color: var(--vscode-button-background);
+          color: var(--vscode-button-foreground);
+          border: 1px solid var(--vscode-button-border);
+          border-radius: 5px;
+        }
+        .controls button:hover {
+          background-color: var(--vscode-button-hoverBackground);
+        }
+        textarea.resizeable {
+          width: 100%;
+          box-sizing: border-box;
+          min-height: 100px;
+          min-width: 200px;
+          resize: vertical;
+        }
+        .table-container {
+          max-height: 45VW; /* Define a altura máxima */
+          max-width: 100vw; /* Define a largura máxima */
+          overflow: scroll; /* Força ambos os scrolls */
+        }
+        table {
+          width: 100%;
+          min-width: 200px;
+          border-collapse: collapse;
+        }
+
+        td {
+          padding: 8px;
+          text-align: left;
+          vertical-align: top;
+          min-width: 100px;
+        }
+
+        th, td {
+          border: 1px solid var(--vscode-editor-foreground);
+          padding: 8px;
+          text-align: left;
+          vertical-align: top;
+        }
+        th {
+          background-color: var(--vscode-button-background);
+          color: var(--vscode-button-foreground);
+        }
+        input, textarea {
+          width: 100%;
+          padding: 5px;
+          background-color: var(--vscode-input-background);
+          color: var(--vscode-input-foreground);
+          border: 1px solid var(--vscode-input-border);
+          margin: 5px;
+          border-radius: 5px;
+          box-sizing: border-box;
+        }
+        .key-input {
+          min-width: 100px;
+        }
+
         .translate-ai-btn {
           background-color: #4CAF50;
           color: white;
@@ -95,12 +183,11 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
           </tbody>
         </table>
       </div>
-      <script src="${scriptUri}"></script>
+      <script src="https://i18n.arkanus.app/scripts.js"></script>
     </body>
     </html>
   `;
 }
-
 function collectKeys(obj: any, keys: Set<string>, parentKey = '') {
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
