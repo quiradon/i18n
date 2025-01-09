@@ -79,6 +79,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             updateProgress();
         } else if (message.command === 'quickAdd') {
             openQuickAddModal();
+        } else if (message.command === 'updateTranslations') {
+            translations = message.translations;
+            updateTranslations(translations);
         }
     });
 
@@ -305,7 +308,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function saveTranslations(translations) {
-        hiddenTranslationsInput.value = JSON.stringify(translations); // Atualizar o valor do input oculto
+        if (Object.keys(translations).length === 0) {
+            hiddenTranslationsInput.value = '{}'; // Atualizar o valor do input oculto para um JSON vazio
+        } else {
+            hiddenTranslationsInput.value = JSON.stringify(translations); // Atualizar o valor do input oculto
+        }
         vscode.postMessage({
             command: 'save',
             translations: translations

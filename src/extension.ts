@@ -63,6 +63,7 @@ async function IATraduzirRapido(key: string, text: string, idiomas: string[]): P
     });
     const idiomasStr = idiomas.join(', ');
     const result = await chatSession.sendMessage(`Translate the following content into the following languages with their i18n codes (${idiomasStr}): '${text}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return the translated strings in a JSON object with language codes as keys, without enclosing it in \`\`\`json and \`\`\`.`);
+    console.log(result.response.text());
     return JSON.parse(result.response.text().replace(/```json|```/g, ''));
   } catch (error) {
     console.error('Error in quick translation:', error);
@@ -160,7 +161,7 @@ export function activate(context: vscode.ExtensionContext) {
                   if (!translations[lang]) {
                     translations[lang] = {};
                   }
-                  translations[lang][key] = translatedBatchQuickAdd[lang] || '';
+                  setNestedValue(translations[lang], key.split('.'), translatedBatchQuickAdd[lang] || '');
                 });
                 await saveTranslations(i18nPath, translations, panel);
                 panel.webview.postMessage({ command: 'updateTranslations', translations });
@@ -175,6 +176,17 @@ export function activate(context: vscode.ExtensionContext) {
       }
     })
   );
+}
+
+function setNestedValue(obj: any, keys: string[], value: any) {
+  keys.reduce((o, k, i) => {
+    if (i === keys.length - 1) {
+      o[k] = value;
+    } else {
+      o[k] = o[k] || {};
+    }
+    return o[k];
+  }, obj);
 }
 
 async function fetchData(url: string): Promise<any> {

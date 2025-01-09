@@ -17,7 +17,7 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
   const languages = Object.keys(translations);
   const headers = languages.map(language => `<th>${language}</th>`).join('');
 
-  let Beta = true;
+  let Beta = false;
   let scriptUri;
   let styleUri;
 
