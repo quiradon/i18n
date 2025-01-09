@@ -26,35 +26,51 @@ const generationConfig = {
   responseMimeType: "text/plain",
 };
 
-async function IATraduzirString(texto: string, idioma: string) {
-  const chatSession = model.startChat({
-    generationConfig,
-    history: [
-    ],
-  });
-
-  const result = await chatSession.sendMessage(`Translate the following content into ${idioma}: '${texto}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return only the translated string.`);
-  console.log(result.response.text());
-  return result.response.text();
+async function IATraduzirString(texto: string, idioma: string): Promise<string> {
+  try {
+    const chatSession = model.startChat({
+      generationConfig,
+      history: [],
+    });
+    const result = await chatSession.sendMessage(`Translate the following content into the language with the i18n code '${idioma}': '${texto}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return only the translated string.`);
+    return result.response.text();
+  } catch (error) {
+    console.error('Error translating string:', error);
+    return '';
+  }
 }
 
-
-async function IATraduzirLista(lista: { [key: string]: string }, idioma: string) {
-  const chatSession = model.startChat({
-    generationConfig,
-    history: [
-    ],
-  });
-  const listaFormatada = Object.entries(lista).map(([key, value]) => `${key}: ${value}`).join(', ');
-  const result = await chatSession.sendMessage(`Translate the following key-value pairs into ${idioma}: '${listaFormatada}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return the translated key-value pairs in json at same format without enclosing it in \`\`\`json and \`\`\`.`);
-  
-  const translatedPairs = JSON.parse(result.response.text());
-  console.log(translatedPairs);
-  return translatedPairs;
+async function IATraduzirLista(lista: { [key: string]: string }, idioma: string): Promise<{ [key: string]: string }> {
+  try {
+    const chatSession = model.startChat({
+      generationConfig,
+      history: [],
+    });
+    const listaFormatada = Object.entries(lista).map(([key, value]) => `${key}: ${value}`).join(', ');
+    const result = await chatSession.sendMessage(`Translate the following key-value pairs into the language with the i18n code '${idioma}': '${listaFormatada}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return the translated key-value pairs in json at same format without enclosing it in \`\`\`json and \`\`\`.`);
+    return JSON.parse(result.response.text());
+  } catch (error) {
+    console.error('Error translating list:', error);
+    return {};
+  }
 }
 
+async function IATraduzirRapido(key: string, text: string, idiomas: string[]): Promise<{ [key: string]: string }> {
+  try {
+    const chatSession = model.startChat({
+      generationConfig,
+      history: [],
+    });
+    const idiomasStr = idiomas.join(', ');
+    const result = await chatSession.sendMessage(`Translate the following content into the following languages with their i18n codes (${idiomasStr}): '${text}'. Ensure that placeholders like <%>, %user%, %target%, or similar remain completely unchanged and are not translated or modified. Adapt the surrounding text to fit the context naturally while keeping the placeholders intact. If emojis, special characters, HTML tags, or markdown formatting are present, retain them as is. Return the translated strings in a JSON object with language codes as keys, without enclosing it in \`\`\`json and \`\`\`.`);
+    return JSON.parse(result.response.text().replace(/```json|```/g, ''));
+  } catch (error) {
+    console.error('Error in quick translation:', error);
+    return {};
+  }
+}
 
-import { loadTranslations, saveTranslations, addNewKey, updateKey, updateTranslation, deleteKey } from './translationUtils';
+import { loadTranslations, saveTranslations } from './translationUtils';
 import { getWebviewContent } from './webviewUtils';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -108,39 +124,25 @@ export function activate(context: vscode.ExtensionContext) {
         panel.webview.onDidReceiveMessage(
           async message => {
             switch (message.command) {
-              case 'createKey':
-                const newKey = message.key || 'new_key';
-                addNewKey(translations, newKey);
-                panel.webview.postMessage({ command: 'updateTranslations', translations });
-                break;
-              case 'updateKey':
-                updateKey(translations, message.oldKey, message.newKey);
-                panel.webview.postMessage({ command: 'updateTranslations', translations });
-                break;
-              case 'updateTranslation':
-                updateTranslation(translations, message.key, message.language, message.value);
-                panel.webview.postMessage({ command: 'updateTranslations', translations });
-                break;
               case 'save':
                 const updatedTranslations = message.translations;
                 await saveTranslations(i18nPath, updatedTranslations, panel);
+                translations = updatedTranslations; // Atualizar o objeto translations
                 vscode.window.showInformationMessage('Traduções salvas com sucesso!');
-                break;
-              case 'fetchData':
-                const data = await fetchData(message.url);
-                panel.webview.postMessage({ command: 'fetchDataResponse', data });
-                break;
-              case 'deleteKey':
-                deleteKey(translations, message.key);
-                panel.webview.postMessage({ command: 'updateTranslations', translations });
                 break;
               case 'translateAI':
                 const translatedText = await IATraduzirString(message.text, message.language);
+                if (!translations[message.language]) {
+                  translations[message.language] = {};
+                }
                 translations[message.language][message.key] = translatedText;
                 panel.webview.postMessage({ command: 'translateAIResponse', key: message.key, language: message.language, translatedText });
                 break;
               case 'batchTranslateAI':
                 const translatedBatch = await IATraduzirLista(message.batch, message.language);
+                if (!translations[message.language]) {
+                  translations[message.language] = {};
+                }
                 for (const key in translatedBatch) {
                   translations[message.language][key] = translatedBatch[key];
                 }
@@ -149,6 +151,20 @@ export function activate(context: vscode.ExtensionContext) {
                   translatedBatch: translatedBatch,
                   language: message.language
                 });
+                break;
+              case 'quickAdd':
+                const { key, text, language } = message;
+                const idiomas = Object.keys(translations);
+                const translatedBatchQuickAdd = await IATraduzirRapido(key, text, idiomas);
+                idiomas.forEach(lang => {
+                  if (!translations[lang]) {
+                    translations[lang] = {};
+                  }
+                  translations[lang][key] = translatedBatchQuickAdd[lang] || '';
+                });
+                await saveTranslations(i18nPath, translations, panel);
+                panel.webview.postMessage({ command: 'updateTranslations', translations });
+                vscode.window.showInformationMessage('Tradução adicionada e preenchida com sucesso!');
                 break;
               // ...existing code...
             }
@@ -162,7 +178,11 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function fetchData(url: string): Promise<any> {
-  const response = await axios.get(url);
-  return response.data;
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
 }
-export function deactivate() {}

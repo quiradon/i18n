@@ -4,29 +4,35 @@ import * as vscode from 'vscode';
 
 export async function loadTranslations(i18nPath: string): Promise<{ [key: string]: any }> {
   const translations: { [key: string]: any } = {};
-  const files = fs.readdirSync(i18nPath);
-
-  for (const file of files) {
-    if (file.endsWith('.json')) {
-      const filePath = path.join(i18nPath, file);
-      const content = fs.readFileSync(filePath, 'utf-8');
-      const language = path.basename(file, '.json');
-      translations[language] = JSON.parse(content);
+  try {
+    const files = fs.readdirSync(i18nPath);
+    for (const file of files) {
+      if (file.endsWith('.json')) {
+        const filePath = path.join(i18nPath, file);
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const language = path.basename(file, '.json');
+        translations[language] = JSON.parse(content);
+      }
     }
+  } catch (error) {
+    console.error('Error loading translations:', error);
   }
-
   return translations;
 }
 
 export async function saveTranslations(i18nPath: string, translations: { [key: string]: any }, panel: vscode.WebviewPanel) {
-  for (const language in translations) {
-    if (translations.hasOwnProperty(language)) {
-      const filePath = path.join(i18nPath, `${language}.json`);
-      const content = JSON.stringify(translations[language], null, 2);
-      fs.writeFileSync(filePath, content, 'utf-8');
+  try {
+    for (const language in translations) {
+      if (translations.hasOwnProperty(language)) {
+        const filePath = path.join(i18nPath, `${language}.json`);
+        const content = JSON.stringify(translations[language], null, 2);
+        fs.writeFileSync(filePath, content, 'utf-8');
+      }
     }
+    panel.webview.postMessage({ command: 'translationsSaved' });
+  } catch (error) {
+    console.error('Error saving translations:', error);
   }
-  panel.webview.postMessage({ command: 'translationsSaved' });
 }
 
 export function addNewKey(translations: { [key: string]: any }, newKey: string) {
@@ -41,32 +47,6 @@ export function addNewKey(translations: { [key: string]: any }, newKey: string) 
       current = current[keys[i]];
     }
     current[keys[keys.length - 1]] = '';
-  });
-}
-
-export function updateKey(translations: { [key: string]: any }, oldKey: string, newKey: string) {
-  const languages = Object.keys(translations);
-  languages.forEach(language => {
-    const keys = oldKey.split('.');
-    let current = translations[language];
-    for (let i = 0; i < keys.length - 1; i++) {
-      if (!current[keys[i]]) {
-        return;
-      }
-      current = current[keys[i]];
-    }
-    const value = current[keys[keys.length - 1]];
-    delete current[keys[keys.length - 1]];
-
-    const newKeys = newKey.split('.');
-    current = translations[language];
-    for (let i = 0; i < newKeys.length - 1; i++) {
-      if (!current[newKeys[i]]) {
-        current[newKeys[i]] = {};
-      }
-      current = current[newKeys[i]];
-    }
-    current[newKeys[newKeys.length - 1]] = value;
   });
 }
 

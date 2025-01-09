@@ -1,7 +1,7 @@
 {
   "name": "arkanus-i18n",
   "description": "Mini Kraken i18n extension for Visual Studio Code",
-  "version": "0.0.4",
+  "version": "0.1.2",
   "publisher": "arkanus",
   "engines": {
     "vscode": "^1.73.0"

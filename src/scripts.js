@@ -5,20 +5,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const searchInput = document.getElementById('search-input');
     const searchType = document.getElementById('search-type');
     const batchTranslateButton = document.getElementById('batch-translate-ai-btn');
+    const hiddenTranslationsInput = document.getElementById('hidden-translations-input'); // Novo input oculto
+    const quickAddButton = document.getElementById('quick-add-btn');
     let referenceLanguage = 'en'; // Valor padrão
+    let translations = JSON.parse(hiddenTranslationsInput.value); // Usar o valor do input oculto
 
     if (createKeyButton) {
         createKeyButton.addEventListener('click', () => {
             const searchValue = searchInput.value;
             createKey(searchValue || 'new_key');
-            updateHighlight();
-            updateProgress();
-        });
-    }
-
-    if (batchTranslateButton) {
-        batchTranslateButton.addEventListener('click', () => {
-            batchTranslate();
             updateHighlight();
             updateProgress();
         });
@@ -32,7 +27,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     if (saveButton) {
         saveButton.addEventListener('click', () => {
-            const translations = collectTranslations();
+            translations = collectTranslations(); // Coletar traduções antes de salvar
             saveTranslations(translations);
             updateHighlight();
             updateProgress();
@@ -41,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     if (searchInput) {
         searchInput.addEventListener('input', debounce(() => {
-            const query = searchInput.value.toLowerCase();
+            const query = normalizeString(searchInput.value);
             const type = searchType.value;
             filterTranslations(query, type);
         }, 300));
@@ -53,12 +48,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
+    if (quickAddButton) {
+        quickAddButton.addEventListener('click', () => {
+            openQuickAddModal();
+        });
+    }
+
     window.addEventListener('message', event => {
         const message = event.data;
         if (message.command === 'setReferenceLanguage') {
             referenceLanguage = message.referenceLanguage;
         } else if (message.command === 'updateTranslations') {
-            updateTranslations(message.translations);
+            translations = message.translations;
+            hiddenTranslationsInput.value = JSON.stringify(translations); // Atualizar o valor do input oculto
+            updateTranslations(translations);
         } else if (message.command === 'translateAIResponse') {
             const textarea = document.querySelector(`textarea[data-key="${CSS.escape(message.key)}"][data-language="${CSS.escape(message.language)}"]`);
             if (textarea) {
@@ -74,8 +77,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
             updateProgress();
+        } else if (message.command === 'quickAdd') {
+            openQuickAddModal();
         }
     });
+
+    updateTranslations(translations); // Adicione esta linha para gerar as traduções a partir do objeto translations
 
     function updateTranslations(translations) {
         const translationsBody = document.getElementById('translations-body');
@@ -94,7 +101,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         const sortedKeys = Array.from(keys).sort();
 
-        const rows = sortedKeys.map(key => {
+        const rows = generateRows(sortedKeys, languages, translations);
+
+        translationsBody.innerHTML = rows;
+        attachEventListeners();
+        applyFilter(currentFilter);
+    }
+
+    function generateRows(keys, languages, translations) {
+        return keys.map(key => {
             const cells = languages.map(language => {
                 const value = getNestedValue(translations[language], key.split('.')) || '';
                 return `<td>
@@ -105,25 +120,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             return `<tr class="translation-row">
                       <td>
-                        <input type="text" value="${key}" class="key-input" data-key="${key}" style="width: ${key.length + 2}ch;">
+                        <span class="key-text" data-key="${key}" style="width: ${key.length + 2}ch;">${key}</span>
                         <button class="delete-key-btn" data-key="${key}">🗑️</button>
                       </td>
                       ${cells}
                     </tr>`;
         }).join('');
-
-        translationsBody.innerHTML = rows;
-        attachEventListeners();
-        applyFilter(currentFilter);
     }
 
     function filterTranslations(query, type) {
         const rows = document.querySelectorAll('.translation-row');
         rows.forEach(row => {
-            const keyInput = row.querySelector('.key-input');
-            if (!keyInput) return;
-            const key = keyInput.value.toLowerCase();
-            const cells = Array.from(row.querySelectorAll('textarea')).map(cell => cell.value.toLowerCase());
+            const keyText = row.querySelector('.key-text');
+            if (!keyText) return;
+            const key = normalizeString(keyText.textContent);
+            const cells = Array.from(row.querySelectorAll('textarea')).map(cell => normalizeString(cell.value));
             const matches = type === 'keys' ? key.includes(query) : cells.some(cell => cell.includes(query));
 
             row.style.display = matches ? '' : 'none';
@@ -180,14 +191,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             textarea.dispatchEvent(new Event('input'));
         });
 
-        document.querySelectorAll('.key-input').forEach(input => {
-            input.addEventListener('blur', function() { // Atualiza quando o input for deselecionado
-                if (this && this.dataset && this.dataset.key) {
-                    updateKey(this.dataset.key, this.value);
-                }
-            });
-        });
-
         document.querySelectorAll('.delete-key-btn').forEach(button => {
             button.addEventListener('click', function() {
                 if (this && this.dataset && this.dataset.key) {
@@ -201,14 +204,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this && this.dataset && this.dataset.key && this.dataset.language) {
                     const key = this.dataset.key;
                     const language = this.dataset.language;
-                    const referenceLanguage = 'en'; // Defina o idioma de referência aqui
-                    const referenceText = document.querySelector(`textarea[data-key="${CSS.escape(key)}"][data-language="${CSS.escape(referenceLanguage)}"]`).value;
-                    vscode.postMessage({
-                        command: 'translateAI',
-                        key: key,
-                        language: language,
-                        text: referenceText
-                    });
+                    const referenceText = getReferenceText(key);
+                    if (referenceText) {
+                        vscode.postMessage({
+                            command: 'translateAI',
+                            key: key,
+                            language: language,
+                            text: referenceText
+                        });
+                    } else {
+                        console.log('Não tem conteúdo de referência.');
+                    }
                 }
             });
         });
@@ -217,9 +223,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function collectTranslations() {
         const translations = {};
         document.querySelectorAll('.translation-row').forEach(row => {
-            const keyInput = row.querySelector('.key-input');
-            if (!keyInput) return;
-            const key = keyInput.value;
+            const keyText = row.querySelector('.key-text');
+            if (!keyText) return;
+            const key = keyText.textContent;
             row.querySelectorAll('textarea').forEach(textarea => {
                 const language = textarea.dataset.language;
                 const value = textarea.value;
@@ -244,17 +250,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function createKey(newKey) {
-        const translations = collectTranslations();
         addNewKey(translations, newKey);
         updateTranslations(translations);
     }
 
-    function batchTranslate() {
-        // Implementar lógica de tradução em lote
+    function deleteKey(key) {
+        removeKeyFromTranslations(translations, key);
+        updateTranslations(translations);
     }
 
     async function batchTranslateEmptyFields() {
-        const translations = collectTranslations();
         const emptyFields = [];
 
         document.querySelectorAll('textarea.resizeable').forEach(textarea => {
@@ -276,44 +281,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 const batchTranslations = {};
 
                 batch.forEach(field => {
-                    const referenceText = document.querySelector(`textarea[data-key="${CSS.escape(field.key)}"][data-language="${CSS.escape(referenceLanguage)}"]`).value;
+                    const referenceText = getReferenceText(field.key);
                     batchTranslations[field.key] = referenceText;
                 });
 
-                vscode.postMessage({
-                    command: 'batchTranslateAI',
-                    batch: batchTranslations,
-                    language: language
-                });
-
-                await new Promise(resolve => setTimeout(resolve, 10000)); // Espera 10 segundos
+                try {
+                    vscode.postMessage({
+                        command: 'batchTranslateAI',
+                        batch: batchTranslations,
+                        language: language
+                    });
+                    await new Promise(resolve => setTimeout(resolve, 10000)); // Espera 10 segundos
+                } catch (error) {
+                    console.error('Error in batch translation:', error);
+                }
             }
         }
     }
 
-    function updateKey(oldKey, newKey) {
-        const translations = collectTranslations();
-        updateKeyInTranslations(translations, oldKey, newKey);
-        updateTranslations(translations);
-    }
-
     function updateTranslation(key, language, value) {
-        const translations = collectTranslations();
-        updateTranslationInTranslations(translations, key, language, value);
+        setNestedValue(translations[language], key.split('.'), value);
         updateTranslations(translations);
     }
 
     function saveTranslations(translations) {
+        hiddenTranslationsInput.value = JSON.stringify(translations); // Atualizar o valor do input oculto
         vscode.postMessage({
             command: 'save',
             translations: translations
-        });
-    }
-
-    function deleteKey(key) {
-        vscode.postMessage({
-            command: 'deleteKey',
-            key: key
         });
     }
 
@@ -332,45 +327,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    function updateKeyInTranslations(translations, oldKey, newKey) {
+    function removeKeyFromTranslations(translations, key) {
         const languages = Object.keys(translations);
         languages.forEach(language => {
-            const keys = oldKey.split('.');
+            const keys = key.split('.');
             let current = translations[language];
             for (let i = 0; i < keys.length - 1; i++) {
-                if (!current[keys[i]]) {
-                    return;
-                }
+                if (!current[keys[i]]) return;
                 current = current[keys[i]];
             }
-            const value = current[keys[keys.length - 1]];
             delete current[keys[keys.length - 1]];
-
-            const newKeys = newKey.split('.');
-            current = translations[language];
-            for (let i = 0; i < newKeys.length - 1; i++) {
-                if (!current[newKeys[i]]) {
-                    current[newKeys[i]] = {};
-                }
-                current = current[newKeys[i]];
-            }
-            current[newKeys[newKeys.length - 1]] = value;
         });
-    }
-
-    function updateTranslationInTranslations(translations, key, language, value) {
-        const keys = key.split('.');
-        let current = translations[language];
-        for (let i = 0; i < keys.length; i++) {
-            if (!current[keys[i]]) {
-                current[keys[i]] = {};
-            }
-            if (i === keys.length - 1) {
-                current[keys[i]] = value;
-            } else {
-                current = current[keys[i]];
-            }
-        }
     }
 
     function debounce(func, wait) {
@@ -385,5 +352,58 @@ window.addEventListener('DOMContentLoaded', (event) => {
         };
     }
 
+    function normalizeString(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function openQuickAddModal() {
+        const modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Adição Rápida</h2>
+                <label for="quick-add-key">Chave:</label>
+                <input type="text" id="quick-add-key" />
+                <label for="quick-add-text">Texto:</label>
+                <input type="text" id="quick-add-text" />
+                <button id="quick-add-submit">Adicionar</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        const closeBtn = modal.querySelector('.close-btn');
+        closeBtn.addEventListener('click', () => {
+            modal.remove();
+        });
+
+        const submitBtn = modal.querySelector('#quick-add-submit');
+        submitBtn.addEventListener('click', () => {
+            const key = document.getElementById('quick-add-key').value;
+            const text = document.getElementById('quick-add-text').value;
+
+            if (key && text) {
+                vscode.postMessage({
+                    command: 'quickAdd',
+                    key: key,
+                    text: text,
+                    language: referenceLanguage
+                });
+                modal.remove();
+            } else {
+                console.log('Por favor, preencha todos os campos.');
+            }
+        });
+    }
+
+    function getReferenceText(key) {
+        const referenceTextarea = document.querySelector(`textarea[data-key="${key}"][data-language="${referenceLanguage}"]`);
+        if (referenceTextarea) {
+            return referenceTextarea.value;
+        } else {
+            console.warn(`Reference textarea not found for key: ${key} and language: ${referenceLanguage}`);
+            return '';
+        }
+    }
     attachEventListeners();
 });

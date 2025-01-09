@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: var(--vscode-editor-background);
+    color: var(--vscode-editor-foreground);
+  }
+  .section {
+    margin-bottom: 20px;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .controls select {
+    padding: 5px;
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border: 1px solid var(--vscode-button-border);
+  }
+  .controls input {
+    flex-grow: 1;
+    padding: 5px;
+    background-color: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+  }
+  .controls .buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+  }
+  .controls button {
+    padding: 10px 20px;
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border: 1px solid var(--vscode-button-border);
+    border-radius: 5px;
+    margin-top: 5px; /* Adicionado para margens em cima dos botões */
+  }
+  .controls button:hover {
+    background-color: var(--vscode-button-hoverBackground);
+  }
+  textarea.resizeable {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100px;
+    min-width: 200px;
+    resize: vertical;
+    height: auto; /* Ajustado para permitir crescimento automático */
+    margin: 5px 0; /* Adicionado para margens em todas as direções */
+  }
+  .table-container {
+    max-height: 45vw; /* Define a altura máxima */
+    max-width: 100vw; /* Define a largura máxima */
+    overflow-x: auto; /* Adicionado para gerar scroll horizontal */
+    overflow-y: auto; /* Adicionado para gerar scroll vertical */
+    display: flex; /* Adicionado para aplicar flexbox */
+    flex-direction: column; /* Adicionado para aplicar flexbox */
+    flex-wrap: nowrap; /* Adicionado para evitar sobreposição */
+    padding: 10px; /* Adicionado para margens de segurança */
+    box-sizing: border-box; /* Adicionado para incluir padding no tamanho total */
+  }
+  table {
+    width: 100%;
+    min-width: 200px;
+    border-collapse: collapse;
+    margin: 10px 0; /* Adicionado para margens de segurança */
+  }
+  thead, tbody {
+    display: table-header-group; /* Mantém a estrutura de tabela */
+    display: table-row-group; /* Mantém a estrutura de tabela */
+  }
+  tr {
+    display: table-row; /* Mantém a estrutura de tabela */
+    width: 100%;
+  }
+  td, th {
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+    min-width: 100px;
+    display: table-cell; /* Mantém a estrutura de tabela */
+    box-sizing: border-box; /* Adicionado para incluir padding no tamanho total */
+  }
+  th {
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    white-space: nowrap; /* Adicionado para evitar quebra de linha */
+    overflow: hidden; /* Adicionado para evitar overflow */
+    text-overflow: ellipsis; /* Adicionado para indicar texto cortado */
+  }
+  input, textarea {
+    width: 100%;
+    height: auto; /* Ajustado para permitir crescimento */
+    padding: 5px;
+    background-color: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    margin: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  .key-input {
+    min-width: 100px;
+  }
+
+  .translate-ai-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 5px; /* Adicionado para margens em cima dos botões */
+  }
+  .translate-ai-btn:hover {
+    background-color: #45a049;
+  }
+  .delete-key-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 5px; /* Adicionado para margens em cima dos botões */
+  }
+  .delete-key-btn:hover {
+    background-color: #e53935;
+  }
+  .controls button, .translate-ai-btn, .delete-key-btn {
+    margin-top: 5px; /* Adicionado para margens em cima dos botões */
+  }
+
+  @media (max-width: 768px) {
+    .controls {
+      flex-direction: column;
+      gap: 5px;
+    }
+    .controls button, .translate-ai-btn, .delete-key-btn {
+      width: 100%;
+      margin-top: 5px;
+    }
+    table {
+      font-size: 0.9em;
+    }
+  }
