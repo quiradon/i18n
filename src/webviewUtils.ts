@@ -1,4 +1,8 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
+import * as fs from 'fs';
+const scriptUri = fs.readFileSync(path.join(__dirname, 'static', 'scripts.js'), 'utf8');
+const styleUri = fs.readFileSync(path.join(__dirname, 'static', 'styles.css'), 'utf8');
 
 function escapeHtml(unsafe: string): string {
   return unsafe.replace(/[&<"'>]/g, function (match) {
@@ -13,24 +17,16 @@ function escapeHtml(unsafe: string): string {
   });
 }
 
-export function getWebviewContent(translations: { [key: string]: any }, webview: vscode.Webview, context: vscode.ExtensionContext): string {
+export function getWebviewContent(
+  translations: Record<string, any>,
+  webview: vscode.Webview,
+  context: vscode.ExtensionContext
+): string {
   const languages = Object.keys(translations);
   const headers = languages.map(language => `<th>${language}</th>`).join('');
 
-  let Beta = false;
-  let scriptUri;
-  let styleUri;
+  const random = Math.floor(Math.random() * 100000) + 1;
 
-  //gere um numero aleatorio
-  const random = Math.floor(Math.random() * 100000) + 1; 
-
-  if (Beta) {
-    scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, 'src', 'scripts.js'));
-    styleUri = webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, 'src', 'styles.css'));
-  } else {
-    scriptUri = `https://i18n.arkanus.app/scripts.js?v=${random}`;
-    styleUri = 'https://i18n.arkanus.app/styles.css';
-  }
 
   return `
     <!DOCTYPE html>
@@ -39,7 +35,9 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Kraken i18n</title>
-      <link rel="stylesheet" type="text/css" href="${styleUri}">
+      <style>
+        ${styleUri}
+      </style>
     </head>
     <body>
       <h1>Bem-vindo ao Kraken i18n</h1>
@@ -51,7 +49,7 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
         <input type="text" id="search-input" placeholder="Buscar...">
         <div class="buttons">
           <button id="add-key-btn">Adicionar Chave</button>
-          <button id="quick-add-btn">Adição Rápida</button> <!-- Novo botão de adição rápida -->
+          <button id="quick-add-btn">Adição Rápida</button>
           <button id="batch-translate-ai-btn">Traduzir Campos Vazios com IA</button>
           <button id="save-btn">Salvar</button>
         </div>
@@ -70,8 +68,33 @@ export function getWebviewContent(translations: { [key: string]: any }, webview:
           </tbody>
         </table>
       </div>
-      <input type="hidden" id="hidden-translations-input" value='${escapeHtml(JSON.stringify(translations))}'> <!-- Novo input oculto -->
-      <script src="${scriptUri}"></script>
+      <input type="hidden" id="hidden-translations-input" value='${escapeHtml(JSON.stringify(translations))}'>
+      <script>
+        ${scriptUri}
+      </script>
+      <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+          const tableBody = document.getElementById('translations-body');
+          if (tableBody) {
+            tableBody.addEventListener('click', (event) => {
+              const target = event.target as HTMLElement;
+              if (target.tagName === 'TD' && target.dataset.key) {
+                const key = target.dataset.key;
+                navigator.clipboard.writeText(key).then(() => {
+                  window.parent.postMessage({
+                    command: 'alert',
+                    text: \`Chave '\${key}' copiada para a área de transferência!\`
+                  }, '*');
+                }).catch(err => {
+                  console.error('Erro ao copiar para a área de transferência:', err);
+                });
+              }
+            });
+          }
+        });
+       </script>
+
     </body>
     </html>
   `;

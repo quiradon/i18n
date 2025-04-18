@@ -364,16 +364,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function openQuickAddModal() {
+        if (!document.getElementById('search-input')) {
+            vscode.postMessage({
+                command: 'showAlert',
+                message: 'Campo de busca não encontrado. Não é possível abrir o modal de Adição Rápida.'
+            });
+            return;
+        }
+
         const modal = document.createElement('div');
         modal.classList.add('modal');
+        modal.style.width = '600px'; // Aumenta o tamanho horizontal do modal
+        modal.style.maxWidth = '90%'; // Torna o modal mais responsivo
+        modal.style.padding = '20px';
         modal.innerHTML = `
             <div class="modal-content">
                 <span class="close-btn">&times;</span>
                 <h2>Adição Rápida</h2>
-                <label for="quick-add-key">Chave:</label>
-                <input type="text" id="quick-add-key" />
+                <p>Idioma de referência: <strong>${referenceLanguage}</strong></p>
+                <p>Nome da chave: <strong>${document.getElementById('search-input').value || 'N/A'}</strong></p>
                 <label for="quick-add-text">Texto:</label>
-                <input type="text" id="quick-add-text" />
+                <textarea id="quick-add-text"></textarea>
                 <button id="quick-add-submit">Adicionar</button>
             </div>
         `;
@@ -386,20 +397,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         const submitBtn = modal.querySelector('#quick-add-submit');
         submitBtn.addEventListener('click', () => {
-            const key = document.getElementById('quick-add-key').value;
-            const text = document.getElementById('quick-add-text').value;
+            const text = document.getElementById('quick-add-text').value.trim();
+            const key = document.getElementById('search-input').value.trim(); // Obtém o valor do campo de busca
 
-            if (key && text) {
+            if (!key || key.length === 0) {
                 vscode.postMessage({
-                    command: 'quickAdd',
-                    key: key,
-                    text: text,
-                    language: referenceLanguage
+                    command: 'showAlert',
+                    message: 'O campo de busca está vazio. Por favor, insira um valor válido.'
                 });
-                modal.remove();
-            } else {
-                console.log('Por favor, preencha todos os campos.');
+                return;
             }
+
+            if (!text || text.length === 0) {
+                vscode.postMessage({
+                    command: 'showAlert',
+                    message: 'O campo de texto está vazio. Por favor, insira um valor válido.'
+                });
+                return;
+            }
+
+            vscode.postMessage({
+                command: 'quickAdd',
+                key: key,
+                text: text,
+                language: referenceLanguage
+            });
+            modal.remove();
         });
     }
 

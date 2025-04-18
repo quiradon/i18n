@@ -74,6 +74,8 @@ async function IATraduzirRapido(key: string, text: string, idiomas: string[]): P
 import { loadTranslations, saveTranslations } from './translationUtils';
 import { getWebviewContent } from './webviewUtils';
 
+let currentPanel: vscode.WebviewPanel | undefined;
+
 export function activate(context: vscode.ExtensionContext) {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   const testButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
@@ -103,8 +105,13 @@ export function activate(context: vscode.ExtensionContext) {
           }
         }
 
+        if (currentPanel) {
+          currentPanel.reveal(vscode.ViewColumn.One);
+          return;
+        }
+
         let translations = await loadTranslations(i18nPath);
-        const panel = vscode.window.createWebviewPanel(
+        currentPanel = vscode.window.createWebviewPanel(
           'krakenI18nWebview',
           'Kraken i18n',
           vscode.ViewColumn.One,
@@ -115,19 +122,25 @@ export function activate(context: vscode.ExtensionContext) {
           }
         );
 
-        panel.webview.html = getWebviewContent(translations, panel.webview, context);
+        currentPanel.onDidDispose(() => {
+          currentPanel = undefined;
+        }, null, context.subscriptions);
 
-        panel.webview.postMessage({
+        currentPanel.webview.html = getWebviewContent(translations, currentPanel.webview, context);
+
+        currentPanel.webview.postMessage({
           command: 'setReferenceLanguage',
           referenceLanguage: referenceLanguage
         });
 
-        panel.webview.onDidReceiveMessage(
+        currentPanel.webview.onDidReceiveMessage(
           async message => {
+            if (!currentPanel) return; // Adicionando verificação de nulidade
+
             switch (message.command) {
               case 'save':
                 const updatedTranslations = message.translations;
-                await saveTranslations(i18nPath, updatedTranslations, panel);
+                await saveTranslations(i18nPath, updatedTranslations, currentPanel);
                 translations = updatedTranslations; // Atualizar o objeto translations
                 vscode.window.showInformationMessage('Traduções salvas com sucesso!');
                 break;
@@ -137,7 +150,7 @@ export function activate(context: vscode.ExtensionContext) {
                   translations[message.language] = {};
                 }
                 translations[message.language][message.key] = translatedText;
-                panel.webview.postMessage({ command: 'translateAIResponse', key: message.key, language: message.language, translatedText });
+                currentPanel.webview.postMessage({ command: 'translateAIResponse', key: message.key, language: message.language, translatedText });
                 break;
               case 'batchTranslateAI':
                 const translatedBatch = await IATraduzirLista(message.batch, message.language);
@@ -147,7 +160,7 @@ export function activate(context: vscode.ExtensionContext) {
                 for (const key in translatedBatch) {
                   translations[message.language][key] = translatedBatch[key];
                 }
-                panel.webview.postMessage({
+                currentPanel.webview.postMessage({
                   command: 'batchTranslateAIResponse',
                   translatedBatch: translatedBatch,
                   language: message.language
@@ -163,8 +176,8 @@ export function activate(context: vscode.ExtensionContext) {
                   }
                   setNestedValue(translations[lang], key.split('.'), translatedBatchQuickAdd[lang] || '');
                 });
-                await saveTranslations(i18nPath, translations, panel);
-                panel.webview.postMessage({ command: 'updateTranslations', translations });
+                await saveTranslations(i18nPath, translations, currentPanel);
+                currentPanel.webview.postMessage({ command: 'updateTranslations', translations });
                 vscode.window.showInformationMessage('Tradução adicionada e preenchida com sucesso!');
                 break;
               // ...existing code...
